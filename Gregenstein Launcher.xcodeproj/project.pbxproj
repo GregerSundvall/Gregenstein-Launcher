@@ -7,12 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5524C60B25BED27600825F8F /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524C60A25BED27600825F8F /* Map.swift */; };
+		5524C61025BED2B100825F8F /* Maps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524C60F25BED2B100825F8F /* Maps.swift */; };
+		5524C61525BED32B00825F8F /* MapDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524C61425BED32B00825F8F /* MapDetails.swift */; };
+		5524C61D25BED56800825F8F /* MapList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5524C61C25BED56800825F8F /* MapList.swift */; };
+		5524C62225BEF42600825F8F /* Map1.json in Resources */ = {isa = PBXBuildFile; fileRef = 5524C62125BEF42600825F8F /* Map1.json */; };
+		5545203C25BEC3720055E328 /* TextureDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545203B25BEC3720055E328 /* TextureDetails.swift */; };
+		5545204C25BECC9F0055E328 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5545204B25BECC9F0055E328 /* Textures.swift */; };
 		5594525025BB08D3001C044C /* Gregenstein_LauncherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594524F25BB08D3001C044C /* Gregenstein_LauncherApp.swift */; };
 		5594525225BB08D3001C044C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594525125BB08D3001C044C /* ContentView.swift */; };
 		5594525425BB08D6001C044C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5594525325BB08D6001C044C /* Assets.xcassets */; };
 		5594525725BB08D6001C044C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5594525625BB08D6001C044C /* Preview Assets.xcassets */; };
 		5594526225BB08D6001C044C /* Gregenstein_LauncherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594526125BB08D6001C044C /* Gregenstein_LauncherTests.swift */; };
 		5594526D25BB08D6001C044C /* Gregenstein_LauncherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594526C25BB08D6001C044C /* Gregenstein_LauncherUITests.swift */; };
+		5594528825BB0B41001C044C /* TextureList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594528725BB0B41001C044C /* TextureList.swift */; };
+		559452B925BB176A001C044C /* Texture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559452B825BB176A001C044C /* Texture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +42,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5524C60A25BED27600825F8F /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		5524C60F25BED2B100825F8F /* Maps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Maps.swift; sourceTree = "<group>"; };
+		5524C61425BED32B00825F8F /* MapDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapDetails.swift; sourceTree = "<group>"; };
+		5524C61C25BED56800825F8F /* MapList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapList.swift; sourceTree = "<group>"; };
+		5524C62125BEF42600825F8F /* Map1.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Map1.json; sourceTree = "<group>"; };
+		5545203B25BEC3720055E328 /* TextureDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureDetails.swift; sourceTree = "<group>"; };
+		5545204B25BECC9F0055E328 /* Textures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
 		5594524C25BB08D3001C044C /* Gregenstein Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Gregenstein Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594524F25BB08D3001C044C /* Gregenstein_LauncherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gregenstein_LauncherApp.swift; sourceTree = "<group>"; };
 		5594525125BB08D3001C044C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +61,8 @@
 		5594526825BB08D6001C044C /* Gregenstein LauncherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Gregenstein LauncherUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5594526C25BB08D6001C044C /* Gregenstein_LauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gregenstein_LauncherUITests.swift; sourceTree = "<group>"; };
 		5594526E25BB08D6001C044C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5594528725BB0B41001C044C /* TextureList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureList.swift; sourceTree = "<group>"; };
+		559452B825BB176A001C044C /* Texture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texture.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +113,13 @@
 		5594524E25BB08D3001C044C /* Gregenstein Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				559452AF25BB16C6001C044C /* Model */,
 				5594524F25BB08D3001C044C /* Gregenstein_LauncherApp.swift */,
-				5594525125BB08D3001C044C /* ContentView.swift */,
+				5594527E25BB0AFE001C044C /* Views */,
 				5594525325BB08D6001C044C /* Assets.xcassets */,
 				5594525825BB08D6001C044C /* Info.plist */,
 				5594525525BB08D6001C044C /* Preview Content */,
+				5524C62125BEF42600825F8F /* Map1.json */,
 			);
 			path = "Gregenstein Launcher";
 			sourceTree = "<group>";
@@ -128,6 +148,29 @@
 				5594526E25BB08D6001C044C /* Info.plist */,
 			);
 			path = "Gregenstein LauncherUITests";
+			sourceTree = "<group>";
+		};
+		5594527E25BB0AFE001C044C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5594525125BB08D3001C044C /* ContentView.swift */,
+				5594528725BB0B41001C044C /* TextureList.swift */,
+				5545203B25BEC3720055E328 /* TextureDetails.swift */,
+				5524C61425BED32B00825F8F /* MapDetails.swift */,
+				5524C61C25BED56800825F8F /* MapList.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		559452AF25BB16C6001C044C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5545204B25BECC9F0055E328 /* Textures.swift */,
+				559452B825BB176A001C044C /* Texture.swift */,
+				5524C60A25BED27600825F8F /* Map.swift */,
+				5524C60F25BED2B100825F8F /* Maps.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +277,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5594525725BB08D6001C044C /* Preview Assets.xcassets in Resources */,
+				5524C62225BEF42600825F8F /* Map1.json in Resources */,
 				5594525425BB08D6001C044C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,7 +303,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				559452B925BB176A001C044C /* Texture.swift in Sources */,
+				5545204C25BECC9F0055E328 /* Textures.swift in Sources */,
+				5524C61525BED32B00825F8F /* MapDetails.swift in Sources */,
+				5545203C25BEC3720055E328 /* TextureDetails.swift in Sources */,
+				5524C60B25BED27600825F8F /* Map.swift in Sources */,
 				5594525225BB08D3001C044C /* ContentView.swift in Sources */,
+				5524C61D25BED56800825F8F /* MapList.swift in Sources */,
+				5594528825BB0B41001C044C /* TextureList.swift in Sources */,
+				5524C61025BED2B100825F8F /* Maps.swift in Sources */,
 				5594525025BB08D3001C044C /* Gregenstein_LauncherApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
