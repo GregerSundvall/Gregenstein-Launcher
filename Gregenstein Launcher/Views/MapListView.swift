@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MapList: View {
+struct MapListView: View {
     
     @ObservedObject var maps = Maps()
     
@@ -29,7 +29,7 @@ struct MapListItem: View {
     let map: Map
     
     var body: some View {
-        NavigationLink(destination: MapDetails(map: map)) {
+        NavigationLink(destination: MapDetailsView(map: map)) {
             Text(map.name)
         }
     }
@@ -39,6 +39,6 @@ struct MapListItem: View {
 
 struct MapList_Previews: PreviewProvider {
     static var previews: some View {
-        MapList()
+        MapListView()
     }
 }

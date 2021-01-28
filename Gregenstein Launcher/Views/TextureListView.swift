@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TextureList: View {
+struct TextureListView: View {
 
     @ObservedObject var textures = Textures()
 
@@ -25,9 +25,9 @@ struct TextureList: View {
 }
 
 struct TextureListItem: View {
-    let texture: Texture
+    let texture: WallTexture
     var body: some View {
-        NavigationLink(destination:TextureDetails(texture: texture)) {
+        NavigationLink(destination:TextureDetailsView(texture: texture)) {
             HStack {
                 Image(uiImage: texture.image).interpolation(.none).resizable().frame(width: 100, height: 100).aspectRatio(contentMode: .fill)
                 Text(texture.name)
@@ -40,6 +40,6 @@ struct TextureListItem: View {
 
 struct Textures_Previews: PreviewProvider {
     static var previews: some View {
-        TextureList()
+        TextureListView()
     }
 }

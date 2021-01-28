@@ -10,7 +10,7 @@ import SwiftUI
 
 class Textures: ObservableObject {
     
-    @Published var list = [Texture]()
+    @Published var list = [WallTexture]()
     
     
     init() {
@@ -20,7 +20,7 @@ class Textures: ObservableObject {
         while oneMore {
             oneMore = false
             if let image = UIImage(named: "texture\(nr)") {
-                list.append(Texture(name: "Texture \(nr)", image: image))
+                list.append(WallTexture(name: "Texture \(nr)", image: image))
                 nr += 1
                 oneMore = true
             }

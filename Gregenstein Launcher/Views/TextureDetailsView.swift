@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct TextureDetails: View {
+struct TextureDetailsView: View {
     
-    var texture: Texture
+    var texture: WallTexture
     
     var body: some View {
         
@@ -24,6 +24,6 @@ struct TextureDetails: View {
 
 struct TextureDetail_Previews: PreviewProvider {
     static var previews: some View {
-        TextureDetails(texture: Textures().list[0])
+        TextureDetailsView(texture: Textures().list[0])
     }
 }

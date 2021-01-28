@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Texture: Identifiable {
+struct WallTexture: Identifiable {
     var id = UUID()
     var name: String
     var image: UIImage

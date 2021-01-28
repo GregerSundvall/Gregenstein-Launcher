@@ -18,18 +18,18 @@ struct ContentView: View {
                 Image("logo").resizable().scaledToFit().frame(width: 300)
                 Spacer()
                 NavigationLink(
-                    destination: TextureList(),
+                    destination: TextureListView(),
                     label: {
                         Text("Play game")
                     })
                 Spacer()
                 NavigationLink(
-                    destination: MapList(),
+                    destination: MapListView(),
                     label: {
                         Text("Maps")
                     }).padding()
                 NavigationLink(
-                    destination: TextureList(),
+                    destination: TextureListView(),
                     label: {
                         Text("Textures")
                     }).padding()
