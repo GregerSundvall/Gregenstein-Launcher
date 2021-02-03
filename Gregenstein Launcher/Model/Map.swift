@@ -13,15 +13,15 @@ class Map: Identifiable, ObservableObject {
     var name: String
     @Published var mapArray = [Int]()
     var actorsArray = [Int]()
-    @Published var textures = [Int: UIImage]()
+    @Published var textures = [UIImage]()
     
     init(name: String) {
         self.name = name
         
-        addMockData()
+        addDefaultData()
     }
     
-    func addMockData() {
+    func addDefaultData() {
         mapArray = [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 7, 7, 7, 7, 7, 7, 7, 7, 0,
@@ -50,7 +50,7 @@ class Map: Identifiable, ObservableObject {
         
         for nr in 0...7 {
             if let texture = UIImage(named: "texture\(nr)") {
-                textures[nr] = texture
+                textures.append(texture)
             }
         }
         

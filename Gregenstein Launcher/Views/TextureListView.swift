@@ -14,7 +14,7 @@ struct TextureListView: View {
     
     init() {
         textures.append(Texture(image: UIImage(named: "texture0")!))
-        print(textures.count)
+        
     }
 
     var body: some View {
