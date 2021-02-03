@@ -8,12 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct Map: Identifiable {
+class Map: Identifiable, ObservableObject {
     var id = UUID()
     var name: String
-    var mapArray = [Int]()
+    @Published var mapArray = [Int]()
     var actorsArray = [Int]()
-    var textures = [UIImage]()
+    @Published var textures = [Int: UIImage]()
     
     init(name: String) {
         self.name = name
@@ -21,18 +21,18 @@ struct Map: Identifiable {
         addMockData()
     }
     
-    mutating func addMockData() {
+    func addMockData() {
         mapArray = [
-            1, 2, 3, 1, 1, 1, 1, 1, 1, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 1,
-            1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 7, 7, 7, 7, 7, 7, 7, 7, 0,
+            0, 7, 5, 5, 5, 5, 5, 5, 7, 0,
+            0, 7, 5, 2, 7, 7, 2, 5, 7, 0,
+            0, 7, 5, 7, 6, 6, 7, 5, 7, 0,
+            0, 7, 5, 7, 6, 6, 7, 5, 7, 0,
+            0, 7, 5, 2, 7, 7, 2, 5, 7, 0,
+            0, 7, 5, 5, 5, 5, 5, 5, 7, 0,
+            0, 7, 7, 7, 7, 7, 7, 7, 7, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ]
         
         actorsArray = [
@@ -41,16 +41,16 @@ struct Map: Identifiable {
             0, 0, 0, 0, 0, 2, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 2, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 1, 0, 0, 2, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 2, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
-            0, 2, 0, 0, 0, 0, 0, 0, 2, 0,
+            0, 2, 0, 0, 0, 0, 0, 0, 1, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ]
         
-        for nr in 1...8 {
+        for nr in 0...7 {
             if let texture = UIImage(named: "texture\(nr)") {
-                textures.append(texture)
+                textures[nr] = texture
             }
         }
         

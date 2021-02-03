@@ -9,30 +9,40 @@ import SwiftUI
 
 struct TextureListView: View {
 
-    @ObservedObject var textures = Textures()
+    @State var textures = [Texture]()
+    
+    
+    init() {
+        textures.append(Texture(image: UIImage(named: "texture0")!))
+        print(textures.count)
+    }
 
     var body: some View {
         
         
-            List() {
-                ForEach(textures.list) { texture in
-                    TextureListItem(texture: texture)
-                }
+        List() {
+            ForEach(textures) { texture in
+                Text("asdf")
+                Image(uiImage: texture.image)
+                //TextureListItem(texture: texture)
             }
-        
-        
+        }
     }
+    
+    
+    
+   
 }
 
 struct TextureListItem: View {
-    let texture: WallTexture
+    let texture: Texture
     var body: some View {
-        NavigationLink(destination:TextureDetailsView(texture: texture)) {
+        //NavigationLink(destination: TextureDetailsView(texture: texture)) {
             HStack {
                 Image(uiImage: texture.image).interpolation(.none).resizable().frame(width: 100, height: 100).aspectRatio(contentMode: .fill)
-                Text(texture.name)
+                //Text(texture.name)
             }
-        }
+        //}
     }
 }
 

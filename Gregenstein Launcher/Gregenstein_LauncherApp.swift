@@ -11,7 +11,7 @@ import SwiftUI
 struct Gregenstein_LauncherApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MenuStart()
         }
     }
 }
