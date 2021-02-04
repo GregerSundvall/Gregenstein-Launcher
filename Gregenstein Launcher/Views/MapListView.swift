@@ -29,7 +29,7 @@ struct MapListItem: View {
     let map: Map
     
     var body: some View {
-        NavigationLink(destination: MapDetailsView(map: map )) {
+        NavigationLink(destination: MapDetailsView(map: map, name: map.name, mapArrayNrs: map.mapArray, texturePalette: map.textures)) {
             Text(map.name)
         }
     }
