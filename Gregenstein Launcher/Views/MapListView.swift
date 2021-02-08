@@ -20,8 +20,6 @@ struct MapListView: View {
                 }
             }
         }
-        
-        
     }
 }
 

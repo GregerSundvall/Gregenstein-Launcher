@@ -17,13 +17,9 @@ struct MapDetailsView: View {
     @State var mapArrayImgs = [UIImage]()
     @State var borders = Array(repeating: CGFloat(0), count: 8)
     @State var texturePalette: [UIImage]
+    @State var textureToAdd = UIImage()
+    @State var showingTexturePicker = false
     
-//    init(map: Map) {
-//        self.map = map
-//        self._name = State(wrappedValue: map.name)
-//        self.texturePalette = map.textures
-//        print(self.texturePalette.count)
-//    }
     
     var body: some View {
         
@@ -60,7 +56,9 @@ struct MapDetailsView: View {
                     setBorders(box: 0)
             }) {
                 Image(uiImage: texturePalette[0]).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[0])
+            }.padding(5)
+            .border(Color.blue, width: borders[0])
+            .onLongPressGesture {showingTexturePicker = true}
             
             Button(action: {
                     selectedTextureNr = 1
@@ -163,9 +161,40 @@ struct MapDetailsView: View {
         return dataPath
     }
     
-    
+    struct TexturePicker: View {
+        
+        @State var textures = Textures()
+        @State private var showingImagePicker = false
+        @State private var inputImage: UIImage?
+
+
+        var body: some View {
+
+
+
+            List() {
+                ForEach(textures.list) { texture in
+                    Image(uiImage: texture).interpolation(.none).resizable().frame(width: 60, height: 60).aspectRatio(contentMode: .fill)
+                }
+            }.navigationBarItems(trailing: Button(action: {
+                self.showingImagePicker = true
+            }){
+                Image(systemName: "plus")
+            }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+                ImagePicker(image: self.$inputImage)
+            })
+        }
+
+        func loadImage() {
+            guard let inputImage = inputImage else { return }
+            textures.list.append(inputImage)
+            //image = inputImage
+            //image = Image(uiImage: inputImage)
+        }
+    }
     
 }
+
 
 
 
