@@ -17,8 +17,6 @@ struct MapDetailsView: View {
     @State var mapArrayImgs = [UIImage]()
     @State var borders = Array(repeating: CGFloat(0), count: 8)
     @State var texturePalette: [UIImage]
-    @State var textureToAdd = UIImage()
-    @State var showingTexturePicker = false
     
     
     var body: some View {
@@ -58,7 +56,6 @@ struct MapDetailsView: View {
                 Image(uiImage: texturePalette[0]).resizable().interpolation(.none).frame(width: 50, height: 50)
             }.padding(5)
             .border(Color.blue, width: borders[0])
-            .onLongPressGesture {showingTexturePicker = true}
             
             Button(action: {
                     selectedTextureNr = 1
@@ -116,17 +113,48 @@ struct MapDetailsView: View {
                 Image(uiImage: texturePalette[6]).resizable().interpolation(.none).frame(width: 50, height: 50)
             }.padding(5).border(Color.blue, width: borders[6])
             
-            Button(action: {
-                    selectedTextureNr = 7
-                    selectedTextureImg = texturePalette[7]
-                    setBorders(box: 7)
-            }) {
-                Image(uiImage: texturePalette[7]).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[7])
+        
+//            Button(action: {
+//                    selectedTextureNr = 7
+//                    selectedTextureImg = texturePalette[7]
+//                    setBorders(box: 7)
+//            }) {
+//                Image(uiImage: texturePalette[7]).resizable().interpolation(.none).frame(width: 50, height: 50)
+//            }.padding(5).border(Color.blue, width: borders[7])
+//            .onLongPressGesture {
+//                openTextureList()
+//            }
+            
+            
+            VStack {
+                Image(uiImage: texturePalette[7])
+                    .resizable()
+                    .interpolation(.none)
+                    .frame(width: 50, height: 50)
+                    
+                    .border(Color.blue, width: borders[7])
+                    .onTapGesture {
+                        selectedTextureNr = 7
+                        selectedTextureImg = texturePalette[7]
+                        setBorders(box: 7)
+                    }
+                NavigationLink(destination: TextureListView(paletteSlot: 7)) {
+                    Text("Change...")
+                        .font(.system(size: 12))
+                }
+                
+                    
+            }.padding(5)
+                
+            
         }
         
         
     }
+    
+    
+    
+    
     
     func setBorders(box: Int) {
         borders = Array(repeating: CGFloat(0), count: 8)
@@ -141,6 +169,7 @@ struct MapDetailsView: View {
     }
     
     func populateMapImgArray() {
+        mapArrayImgs.removeAll()
         for value in mapArrayNrs {
             mapArrayImgs.append(texturePalette[value])
         }
@@ -151,7 +180,7 @@ struct MapDetailsView: View {
     func saveMap(name: String, array: [Int], textures: [UIImage]) {
         let newMap = Map(name: name)
         newMap.mapArray = array
-        newMap.textures = textures
+        //newMap.textures = textures
         }
     
     func getDocsDir() -> URL {
@@ -161,37 +190,7 @@ struct MapDetailsView: View {
         return dataPath
     }
     
-    struct TexturePicker: View {
-        
-        @State var textures = Textures()
-        @State private var showingImagePicker = false
-        @State private var inputImage: UIImage?
-
-
-        var body: some View {
-
-
-
-            List() {
-                ForEach(textures.list) { texture in
-                    Image(uiImage: texture).interpolation(.none).resizable().frame(width: 60, height: 60).aspectRatio(contentMode: .fill)
-                }
-            }.navigationBarItems(trailing: Button(action: {
-                self.showingImagePicker = true
-            }){
-                Image(systemName: "plus")
-            }.sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
-                ImagePicker(image: self.$inputImage)
-            })
-        }
-
-        func loadImage() {
-            guard let inputImage = inputImage else { return }
-            textures.list.append(inputImage)
-            //image = inputImage
-            //image = Image(uiImage: inputImage)
-        }
-    }
+    
     
 }
 

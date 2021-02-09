@@ -8,38 +8,13 @@
 import Foundation
 import SwiftUI
 
-class Texture: Identifiable {
-    var image: UIImage
+class Texture: Identifiable, Codable {
+    var imageData: Data
     
-    init(image: UIImage) {
-        self.image = image
+    init(imageData: Data) {
+        self.imageData = imageData
     }
     
     
-}
-
-
-class WallTexture {
-    var image : UIImage
-    var dark: UIImage
-    
-    init(image: UIImage, dark: UIImage) {
-        self.image = image
-        self.dark = dark
-    }
-}
-
-
-
-
-
-class FloorCeilingTexture {
-    var floor: UIImage
-    var ceiling: UIImage
-    
-    init(floor: UIImage, ceiling: UIImage) {
-        self.floor = floor
-        self.ceiling = ceiling
-    }
 }
 

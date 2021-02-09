@@ -12,7 +12,7 @@ struct TextureListView: View {
     @State var textures = Textures()
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-    
+    let paletteSlot: Int
     
     var body: some View {
         
@@ -55,8 +55,8 @@ extension UIImage: Identifiable {}
 
 
 
-struct Textures_Previews: PreviewProvider {
-    static var previews: some View {
-        TextureListView()
-    }
-}
+//struct Textures_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TextureListView()
+//    }
+//}

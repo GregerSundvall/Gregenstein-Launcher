@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-class Map: Identifiable, ObservableObject {
+class Map: Identifiable, ObservableObject, Codable{
     var id = UUID()
     var name: String
-    @Published var mapArray = [Int]()
+    var mapArray = [Int]()
     var actorsArray = [Int]()
-    @Published var textures = [UIImage]()
+    var textures = [Texture]()
+    
     
     init(name: String) {
         self.name = name
@@ -48,11 +49,11 @@ class Map: Identifiable, ObservableObject {
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ]
         
-        for nr in 0...7 {
-            if let texture = UIImage(named: "texture\(nr)") {
-                textures.append(texture)
-            }
-        }
+//        for nr in 0...7 {
+//            if let texture = UIImage(named: "texture\(nr)") {
+//                textures.append(texture)
+//            }
+//        }
         
         
         

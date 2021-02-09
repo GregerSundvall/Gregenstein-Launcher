@@ -12,6 +12,7 @@ struct Gregenstein_LauncherApp: App {
     var body: some Scene {
         WindowGroup {
             MenuStart()
+                .environmentObject(Resources())
         }
     }
 }

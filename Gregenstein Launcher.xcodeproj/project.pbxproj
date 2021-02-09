@@ -23,6 +23,8 @@
 		5594526225BB08D6001C044C /* Gregenstein_LauncherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594526125BB08D6001C044C /* Gregenstein_LauncherTests.swift */; };
 		5594526D25BB08D6001C044C /* Gregenstein_LauncherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594526C25BB08D6001C044C /* Gregenstein_LauncherUITests.swift */; };
 		5594528825BB0B41001C044C /* TextureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594528725BB0B41001C044C /* TextureListView.swift */; };
+		55F4CD9725D2B48E00B87C3B /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F4CD9625D2B48E00B87C3B /* Resources.swift */; };
+		55F4CD9C25D2CCEC00B87C3B /* CodableImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F4CD9B25D2CCEC00B87C3B /* CodableImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		5594526C25BB08D6001C044C /* Gregenstein_LauncherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gregenstein_LauncherUITests.swift; sourceTree = "<group>"; };
 		5594526E25BB08D6001C044C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5594528725BB0B41001C044C /* TextureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureListView.swift; sourceTree = "<group>"; };
+		55F4CD9625D2B48E00B87C3B /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		55F4CD9B25D2CCEC00B87C3B /* CodableImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,6 +176,8 @@
 				55211EDF25C84AC0009BF7A9 /* Texture.swift */,
 				555C5D2A25CC1E530072B3D5 /* Textures.swift */,
 				555C5D2F25CC23420072B3D5 /* ImagePicker.swift */,
+				55F4CD9625D2B48E00B87C3B /* Resources.swift */,
+				55F4CD9B25D2CCEC00B87C3B /* CodableImage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -315,6 +321,8 @@
 				5524C61D25BED56800825F8F /* MapListView.swift in Sources */,
 				555C5D3025CC23420072B3D5 /* ImagePicker.swift in Sources */,
 				5594528825BB0B41001C044C /* TextureListView.swift in Sources */,
+				55F4CD9C25D2CCEC00B87C3B /* CodableImage.swift in Sources */,
+				55F4CD9725D2B48E00B87C3B /* Resources.swift in Sources */,
 				5524C61025BED2B100825F8F /* Maps.swift in Sources */,
 				5594525025BB08D3001C044C /* Gregenstein_LauncherApp.swift in Sources */,
 			);

@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct MenuStart: View {
+    
+    
+    
     var body: some View {
         
         
@@ -18,7 +21,7 @@ struct MenuStart: View {
                 Image("logo").resizable().scaledToFit().frame(width: 300)
                 Spacer()
                 NavigationLink(
-                    destination: TextureListView(),
+                    destination: TextureListView(paletteSlot: 0),
                     label: {
                         Text("Play game")
                     })
@@ -29,7 +32,7 @@ struct MenuStart: View {
                         Text("Maps")
                     }).padding()
                 NavigationLink(
-                    destination: TextureListView(),
+                    destination: TextureListView(paletteSlot: 0),
                     label: {
                         Text("Textures")
                     }).padding()
