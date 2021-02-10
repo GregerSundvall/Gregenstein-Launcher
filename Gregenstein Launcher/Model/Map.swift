@@ -13,13 +13,49 @@ class Map: Identifiable, ObservableObject, Codable{
     var name: String
     var mapArray = [Int]()
     var actorsArray = [Int]()
-    var textures = [Texture]()
+    var texturePalette = [Data]()
     
     
     init(name: String) {
         self.name = name
         
         addDefaultData()
+    }
+    
+
+    
+    func getUiImgFromPalette(nr: Int) -> UIImage {
+        var uiImage = UIImage()
+        if let image = UIImage(data: texturePalette[nr]) {
+            uiImage = image
+        }
+        return uiImage
+    }
+    
+    func getUiImage(data: Data) -> UIImage {
+        var uiImage = UIImage()
+        if let image = UIImage(data: data) {
+            uiImage = image
+        }
+        return uiImage
+    }
+    
+    func getUiImageTexturePalette() -> [UIImage] {
+        var palette = [UIImage]()
+        for imageData in texturePalette {
+            palette.append(getUiImage(data: imageData))
+        }
+        return palette
+    }
+    
+    func getImageArray() -> [UIImage] {
+        var array = [UIImage]()
+        for nr in mapArray {
+            array.append(getUiImage(data: texturePalette[nr]))
+            
+        }
+        print("\(array.count) uiimages in returned array")
+        return array
     }
     
     func addDefaultData() {
@@ -49,14 +85,18 @@ class Map: Identifiable, ObservableObject, Codable{
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ]
         
-//        for nr in 0...7 {
-//            if let texture = UIImage(named: "texture\(nr)") {
-//                textures.append(texture)
-//            }
-//        }
-        
-        
-        
+        for index in 0...7 {
+            if let image = UIImage(named: "texture\(index)") {
+                if let data = image.pngData() {
+                    texturePalette.append(data)
+                    print("1 image data added to palette")
+                } else {
+                    print("could not get image data")
+                }
+            } else {
+                print("Could not get image asset")
+            }
+        }
     }
     
     

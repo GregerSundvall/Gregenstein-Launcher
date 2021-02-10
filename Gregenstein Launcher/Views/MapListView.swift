@@ -9,15 +9,17 @@ import SwiftUI
 
 struct MapListView: View {
     
-    @ObservedObject var maps = Maps()
     @EnvironmentObject var resources: Resources
     
     var body: some View {
-        Text(String(resources.textures.count))
+        Text("\(resources.maps.count) maps total")
+        Text("\(resources.textures.count) textures total")
+        
         VStack {
             List() {
-                ForEach(maps.list) { map in
+                ForEach(resources.maps) { map in
                     MapListItem(map: map)
+                    
                 }
             }
         }
@@ -27,12 +29,40 @@ struct MapListView: View {
 struct MapListItem: View {
     let map: Map
     
+    
     var body: some View {
-//        NavigationLink(destination: MapDetailsView(map: map, name: map.name, mapArrayNrs: map.mapArray, texturePalette: map.textures)
-//        ) {
-//            Text(map.name)
-//        }
-        Text("asdf")
+        NavigationLink(destination: MapDetailsView(map: getMapCopy(map: map))
+        ) {
+            
+            VStack {
+                Text("Name: \(map.name)")
+                Text("Map size: \(map.mapArray.count)")
+                Text("Map images count: \(map.getImageArray().count)")
+                Text("\(map.texturePalette.count) images in palette")
+                HStack {
+                    Image(uiImage: map.getUiImageTexturePalette()[0])
+                    Image(uiImage: map.getUiImageTexturePalette()[1])
+                    Image(uiImage: map.getUiImageTexturePalette()[2])
+                    Image(uiImage: map.getUiImageTexturePalette()[3])
+                    Image(uiImage: map.getUiImageTexturePalette()[4])
+                    Image(uiImage: map.getUiImageTexturePalette()[5])
+                    Image(uiImage: map.getUiImageTexturePalette()[6])
+                    Image(uiImage: map.getUiImageTexturePalette()[7])
+                    
+                }
+            }
+        }
+    }
+    
+    func getMapCopy(map: Map) -> Map {
+        let mapCopy = Map(name: map.name)
+        mapCopy.id = map.id
+        mapCopy.name = map.name
+        mapCopy.mapArray = map.mapArray
+        mapCopy.actorsArray = map.actorsArray
+        mapCopy.texturePalette = map.texturePalette
+        
+        return mapCopy
     }
 }
 

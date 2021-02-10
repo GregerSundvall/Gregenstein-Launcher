@@ -21,7 +21,7 @@ struct MenuStart: View {
                 Image("logo").resizable().scaledToFit().frame(width: 300)
                 Spacer()
                 NavigationLink(
-                    destination: TextureListView(paletteSlot: 0),
+                    destination: MapListView(),
                     label: {
                         Text("Play game")
                     })
@@ -32,7 +32,7 @@ struct MenuStart: View {
                         Text("Maps")
                     }).padding()
                 NavigationLink(
-                    destination: TextureListView(paletteSlot: 0),
+                    destination: MapListView(),
                     label: {
                         Text("Textures")
                     }).padding()

@@ -12,12 +12,34 @@ class Resources: ObservableObject {
     @Published var maps = [Map]()
     @Published var textures = [Data]()
     @Published var docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-    var firstRun = true
+    //var firstRun = true
     //var defaultTextures = [Data]()
     
     init() {
         checkIfFirstRun()
         loadTextures()
+        loadMaps()
+    }
+    
+    func loadMaps() {
+        var counter = 0
+        var keepGoin = true
+        
+        while keepGoin {
+            let url = docsDir.appendingPathComponent("map\(counter)")
+            do {
+                let data = try Data(contentsOf: url)
+                let decoder = JSONDecoder()
+                let map = try! decoder.decode(Map.self, from: data)
+                maps.append(map)
+                print(maps.count)
+                counter += 1
+
+            } catch {
+                print("All maps added")
+                keepGoin = false
+            }
+        }
         
     }
     
@@ -46,7 +68,7 @@ class Resources: ObservableObject {
         
         do {
             _ = try String(contentsOf: url)
-            firstRun = false
+            //firstRun = false
             print("not first run")
         } catch {
             saveDefaultsToDocs()
@@ -62,7 +84,7 @@ class Resources: ObservableObject {
             try str.write(to: url, atomically: true, encoding: .utf8)
             
             saveDefaultTextures()
-            
+            saveDefaultMap()
             print("firstrun stuff saved")
         } catch {
             print("error saving first run")
@@ -82,6 +104,15 @@ class Resources: ObservableObject {
     }
     
     func saveDefaultMap() {
+        let map = Map(name: "asdf")
+        for texture in textures {
+            map.texturePalette.append(texture)
+        }
+        let jsonData = try! JSONEncoder().encode(map)
+        let filename = docsDir.appendingPathComponent("map0")
+        try? jsonData.write(to: filename)
+        print("map written to docs?")
+        
         
     }
     
