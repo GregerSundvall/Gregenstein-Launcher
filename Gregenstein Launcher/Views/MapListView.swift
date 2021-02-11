@@ -28,10 +28,10 @@ struct MapListView: View {
 
 struct MapListItem: View {
     let map: Map
-    
+    let newMap = Map(name: "New map")
     
     var body: some View {
-        NavigationLink(destination: MapDetailsView(map: getMapCopy(map: map))
+        NavigationLink(destination: MapDetailsView(map: getMapCopy(map: map), originalMap: map)
         ) {
             
             VStack {
@@ -40,23 +40,21 @@ struct MapListItem: View {
                 Text("Map images count: \(map.getImageArray().count)")
                 Text("\(map.texturePalette.count) images in palette")
                 HStack {
-                    Image(uiImage: map.getUiImageTexturePalette()[0])
-                    Image(uiImage: map.getUiImageTexturePalette()[1])
-                    Image(uiImage: map.getUiImageTexturePalette()[2])
-                    Image(uiImage: map.getUiImageTexturePalette()[3])
-                    Image(uiImage: map.getUiImageTexturePalette()[4])
-                    Image(uiImage: map.getUiImageTexturePalette()[5])
-                    Image(uiImage: map.getUiImageTexturePalette()[6])
-                    Image(uiImage: map.getUiImageTexturePalette()[7])
+                    
                     
                 }
             }
-        }
+        }.navigationBarItems(trailing:
+                                NavigationLink(destination: MapDetailsView(map: newMap, originalMap: newMap)) {
+                                    Image(systemName: "plus")
+                                }
+            )
     }
+    
+   
     
     func getMapCopy(map: Map) -> Map {
         let mapCopy = Map(name: map.name)
-        mapCopy.id = map.id
         mapCopy.name = map.name
         mapCopy.mapArray = map.mapArray
         mapCopy.actorsArray = map.actorsArray

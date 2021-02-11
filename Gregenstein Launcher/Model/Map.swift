@@ -89,13 +89,14 @@ class Map: Identifiable, ObservableObject, Codable{
             if let image = UIImage(named: "texture\(index)") {
                 if let data = image.pngData() {
                     texturePalette.append(data)
-                    print("1 image data added to palette")
                 } else {
                     print("could not get image data")
                 }
             } else {
                 print("Could not get image asset")
             }
+            print("Image data added to palette")
+
         }
     }
     

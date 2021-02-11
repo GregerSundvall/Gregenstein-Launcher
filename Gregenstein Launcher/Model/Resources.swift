@@ -21,6 +21,43 @@ class Resources: ObservableObject {
         loadMaps()
     }
     
+    func saveNewMap(map: Map) {
+        let mapIndex = maps.endIndex
+        let jsonData = try! JSONEncoder().encode(map)
+        let filename = docsDir.appendingPathComponent("map\(mapIndex)")
+        try? jsonData.write(to: filename)
+        maps.removeAll()
+        loadMaps()
+        print("new map saved and list is reloaded")
+    }
+    
+    func saveExistingMap(map: Map, originalMap: Map) {
+        if let index = maps.lazy.firstIndex(where: { $0.id == originalMap.id }) {
+            maps[index].name = map.name
+            maps[index].mapArray = map.mapArray
+            maps[index].actorsArray = map.actorsArray
+            maps[index].texturePalette = map.texturePalette
+            
+            let updatedMap = maps[index]
+            let jsonData = try! JSONEncoder().encode(updatedMap)
+            let filename = docsDir.appendingPathComponent("map\(index)")
+            try? jsonData.write(to: filename)
+            print("map changes saved")
+            maps.removeAll()
+            loadMaps()
+            
+        } else {
+            saveNewMap(map: map)
+            print("could not locate original map. Saved as new map")
+            maps.removeAll()
+            loadMaps()
+        }
+        
+        
+        
+        
+    }
+    
     func loadMaps() {
         var counter = 0
         var keepGoin = true
@@ -32,7 +69,6 @@ class Resources: ObservableObject {
                 let decoder = JSONDecoder()
                 let map = try! decoder.decode(Map.self, from: data)
                 maps.append(map)
-                print(maps.count)
                 counter += 1
 
             } catch {
@@ -111,7 +147,7 @@ class Resources: ObservableObject {
         let jsonData = try! JSONEncoder().encode(map)
         let filename = docsDir.appendingPathComponent("map0")
         try? jsonData.write(to: filename)
-        print("map written to docs?")
+        print("map written to docs")
         
         
     }

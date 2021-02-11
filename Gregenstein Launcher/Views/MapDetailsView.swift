@@ -8,17 +8,20 @@
 import SwiftUI
 
 struct MapDetailsView: View {
+    @EnvironmentObject var resources: Resources
     var map: Map
+    var originalMap: Map
     @State var selectedTextureNr = 99
     @State var selectedTextureImg = UIImage()
     @State var mapImgsArray = [UIImage]()
     @State var borders = Array(repeating: CGFloat(0), count: 8)
-    @State var uiImageTexturePalette = [UIImage]()
+    @State var uiImagePalette = [UIImage]()
     
     func setupVars() {
         mapImgsArray = map.getImageArray()
-        uiImageTexturePalette = map.getUiImageTexturePalette()
+        uiImagePalette = map.getUiImageTexturePalette()
     }
+    
   
     
     var body: some View {
@@ -43,121 +46,74 @@ struct MapDetailsView: View {
                 }
             }
         }
-        .navigationBarItems(trailing: Button("Save") {} )
+        .navigationBarItems(trailing: Button("Save") {saveMap()} )
         .onAppear() {setupVars()}
         
-        
-        Text("Pick a texture below then tap desired area in map to draw. Tap and hold a texture to replace it.").padding().font(.system(size: 12))
-        
-        
-        
-        HStack {
-
-            Button(action: {
-                    selectedTextureNr = 0
-                    selectedTextureImg = uiImageTexturePalette[0]
-                    setBorders(box: 0)
-
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[0])) .resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5)
-            .border(Color.blue, width: borders[0])
-
-            Button(action: {
-                    selectedTextureNr = 1
-                    selectedTextureImg = uiImageTexturePalette[1]
-                    setBorders(box: 1)
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[1])).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[1])
-
-            Button(action: {
-                    selectedTextureNr = 2
-                    selectedTextureImg = uiImageTexturePalette[2]
-                    setBorders(box: 2)
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[2])).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[2])
-
-            Button(action: {
-                    selectedTextureNr = 3
-                    selectedTextureImg = uiImageTexturePalette[3]
-                    setBorders(box: 3)
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[3])).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[3])
-
-            Button(action: {
-                    selectedTextureNr = 4
-                    selectedTextureImg = uiImageTexturePalette[4]
-                    setBorders(box: 4)
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[4])).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[4])
-
-        }
+        Text("Pick a texture below then tap desired area in map to draw. Tap and hold a texture to replace it.")
+            .padding(.top)
+            .padding(.bottom, 5)
+            .font(.system(size: 12))
+            .fixedSize(horizontal: false, vertical: true)
+            .multilineTextAlignment(.center)
         
         
+        
+        Text("Walls").padding(.bottom, -10)
         
         
         HStack {
-            Text("Floors").padding(.top)
+            ForEach(uiImagePalette.indices, id: \.self) { index in
+                
+                if index <= 4 {
+                    VStack {
+                        Button(action: {
+                                selectedTextureNr = index
+                                selectedTextureImg = uiImagePalette[index]
+                                setBorders(box: index)
+                        }) {
+                            Image(uiImage: uiImagePalette[index]) .resizable().interpolation(.none).frame(width: 50, height: 50)
+                        }
+                        .padding(5)
+                        .border(Color.blue, width: borders[index])
+                        Text("Change...").font(.system(size: 11)).padding(-8).foregroundColor(.blue)
+                        //                                    NavigationLink(destination: TextureListView(paletteSlot: 7)) {
+                        //                                        Text("Change...")
+                        //                                            .font(.system(size: 12))
+                        //                                    }
+                    }.padding(3)
+                }
+            }
         }
+
+        
+        Text("Floors").padding(.top).padding(.bottom, -10)
+        
         
         HStack {
+            ForEach(uiImagePalette.indices, id: \.self) { index in
+                
+                if index >= 5 {
+                    VStack {
+                        Button(action: {
+                                selectedTextureNr = index
+                                selectedTextureImg = uiImagePalette[index]
+                                setBorders(box: index)
+                        }) {
+                            Image(uiImage: uiImagePalette[index]) .resizable().interpolation(.none).frame(width: 50, height: 50)
+                        }
+                        .padding(5)
+                        .border(Color.blue, width: borders[index])
+                        Text("Change...").font(.system(size: 11)).padding(-8).foregroundColor(.blue)
+                    }.padding(5)
 
-            Button(action: {
-                    selectedTextureNr = 5
-                    selectedTextureImg = map.getUiImage(data: map.texturePalette[5])
-                    setBorders(box: 5)
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[5])).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[5])
-
-            Button(action: {
-                    selectedTextureNr = 6
-                    selectedTextureImg = map.getUiImage(data: map.texturePalette[6])
-                    setBorders(box: 6)
-            }) {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[6])).resizable().interpolation(.none).frame(width: 50, height: 50)
-            }.padding(5).border(Color.blue, width: borders[6])
-
-        
-//            Button(action: {
-//                    selectedTextureNr = 7
-//                    selectedTextureImg = texturePalette[7]
-//                    setBorders(box: 7)
-//            }) {
-//                Image(uiImage: texturePalette[7]).resizable().interpolation(.none).frame(width: 50, height: 50)
-//            }.padding(5).border(Color.blue, width: borders[7])
-//            .onLongPressGesture {
-//                openTextureList()
-//            }
-            
-            
-            VStack {
-                Image(uiImage: map.getUiImage(data: map.texturePalette[7]))
-                    .resizable()
-                    .interpolation(.none)
-                    .frame(width: 50, height: 50)
-
-                    .border(Color.blue, width: borders[7])
-                    .onTapGesture {
-                        selectedTextureNr = 7
-                        selectedTextureImg = map.getUiImage(data: map.texturePalette[7])
-                        setBorders(box: 7)
-                    }
-//                NavigationLink(destination: TextureListView(paletteSlot: 7)) {
-//                    Text("Change...")
-//                        .font(.system(size: 12))
-//                }
-
-
-            }.padding(5)
-
-
+                    
+                }
+            }
         }
-        
+       
+
+
+
         
     }
     
@@ -177,18 +133,25 @@ struct MapDetailsView: View {
     }
     
     func populatePaletteImgs() {
+        uiImagePalette.removeAll()
         for imagedata in map.texturePalette {
-            uiImageTexturePalette.append(map.getUiImage(data: imagedata))
+            uiImagePalette.append(map.getUiImage(data: imagedata))
         }
     }
     
 
    
-    func saveMap(name: String, array: [Int], textures: [UIImage]) {
-        let newMap = Map(name: name)
-        newMap.mapArray = array
-        //newMap.textures = textures
+    func saveMap() {
+        if map.id == originalMap.id {
+            resources.saveNewMap(map: map)
+        } else {
+            resources.saveExistingMap(map: map, originalMap: originalMap)
+            
         }
+        
+        
+        
+    }
     
     func getDocsDir() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
