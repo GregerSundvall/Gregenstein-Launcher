@@ -12,8 +12,6 @@ struct MapListView: View {
     @EnvironmentObject var resources: Resources
     
     var body: some View {
-        Text("\(resources.maps.count) maps total")
-        Text("\(resources.textures.count) textures total")
         
         VStack {
             List() {
@@ -35,21 +33,22 @@ struct MapListItem: View {
         ) {
             
             VStack {
-                Text("Name: \(map.name)")
-                Text("Map size: \(map.mapArray.count)")
-                Text("Map images count: \(map.getImageArray().count)")
-                Text("\(map.texturePalette.count) images in palette")
+                Text("\(map.name)")
+//                Text("Map size: \(map.mapArray.count)")
+//                Text("Map images count: \(map.getImageArray().count)")
+//                Text("\(map.texturePalette.count) images in palette")
                 HStack {
                     
                     
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("Maps")
         .navigationBarItems(trailing:
-                                NavigationLink(destination: MapDetailsView(map: newMap, originalMap: newMap)) {
-                                    Image(systemName: "plus")
-                                }
-            )
+            NavigationLink(destination: MapDetailsView(map: newMap, originalMap: newMap)) {
+                Image(systemName: "plus")
+            })
     }
     
    

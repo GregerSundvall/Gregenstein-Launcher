@@ -9,15 +9,10 @@ import SwiftUI
 
 struct MenuStart: View {
     
-    
-    
     var body: some View {
-        
-        
         
         NavigationView {
             VStack {
-                
                 Image("logo").resizable().scaledToFit().frame(width: 300)
                 Spacer()
                 NavigationLink(
@@ -39,10 +34,8 @@ struct MenuStart: View {
                 Spacer()
             }
         }
-        
-        
-        
-        
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle("")
     }
 }
 

@@ -18,11 +18,8 @@ class Map: Identifiable, ObservableObject, Codable{
     
     init(name: String) {
         self.name = name
-        
         addDefaultData()
     }
-    
-
     
     func getUiImgFromPalette(nr: Int) -> UIImage {
         var uiImage = UIImage()
@@ -52,7 +49,6 @@ class Map: Identifiable, ObservableObject, Codable{
         var array = [UIImage]()
         for nr in mapArray {
             array.append(getUiImage(data: texturePalette[nr]))
-            
         }
         return array
     }
@@ -94,12 +90,10 @@ class Map: Identifiable, ObservableObject, Codable{
             } else {
                 print("Could not get image asset")
             }
-            print("One image data added to map palette")
-
+            //print("One image data added to map palette")
         }
+        print("Map created with default data. Why is this run a number of times?")
     }
-    
-    
 }
 
 

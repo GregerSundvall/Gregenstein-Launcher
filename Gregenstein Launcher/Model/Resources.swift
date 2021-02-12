@@ -37,7 +37,6 @@ class Resources: ObservableObject {
             let textureFilename = mapDir.appendingPathComponent("texture\(index)")
             try? map.texturePalette[index].write(to: textureFilename)
         }
-        
         maps.removeAll()
         loadMaps()
         print("new map saved and list is reloaded")
@@ -49,45 +48,31 @@ class Resources: ObservableObject {
             maps[index].mapArray = map.mapArray
             maps[index].actorsArray = map.actorsArray
             maps[index].texturePalette = map.texturePalette
-            
-            //let updatedMap = maps[index]
             let mapDir = mapsDir.appendingPathComponent("map\(index)")
             let jsonData = try! JSONEncoder().encode(maps[index])
-            
             let filename = mapDir.appendingPathComponent("map\(index).json")
             try? jsonData.write(to: filename)
             print("map changes saved")
             maps.removeAll()
             loadMaps()
-            
         } else {
             saveNewMap(map: map)
             print("could not locate original map. Saved as new map")
             maps.removeAll()
             loadMaps()
         }
-        
-        
-        
-        
     }
     
     func loadMaps() {
         var counter = 0
         var keepGoin = true
         maps.removeAll()
-        
         while keepGoin {
             let mapDir = mapsDir.appendingPathComponent("map\(counter)")
             let mapFile = mapDir.appendingPathComponent("map\(counter).json")
             do {
                 let mapData = try Data(contentsOf: mapFile)
                 let map = try! decoder.decode(Map.self, from: mapData)
-//                for index in 0...7 {
-//                    let textureFile = mapDir.appendingPathComponent("texture\(index)")
-//                    let textureData = try Data(contentsOf: textureFile)
-//                    map.texturePalette.append(textureData)
-//                }
                 maps.append(map)
                 counter += 1
                 print("One map loaded and added to list")
@@ -102,18 +87,15 @@ class Resources: ObservableObject {
         var counter = 0
         var keepGoin = true
         textures.removeAll()
-        
         while keepGoin {
-            
             let textureFile = texturesDir.appendingPathComponent("texture\(counter)")
             do {
                 let textureData = try Data(contentsOf: textureFile)
                 textures.append(textureData)
-                print("One texture loaded and added to list")
+                //print("One texture loaded and added to list")
                 counter += 1
-
             } catch {
-                print("All textures added")
+                print("All textures loaded from documents")
                 keepGoin = false
             }
         }
@@ -125,7 +107,6 @@ class Resources: ObservableObject {
         map0Dir = mapsDir.appendingPathComponent("map0")
         map0Url = map0Dir.appendingPathComponent("map0.json")
         texturesDir = docsDir.appendingPathComponent("textures")
-        
         do {
             _ = try String(contentsOf: map0Url)
             print("Not first run")
@@ -145,27 +126,22 @@ class Resources: ObservableObject {
     }
 
     func saveDefaultTextures() {
-        
         for index in 0...7 {
-            
             if let imageFromAssets = UIImage(named: "texture\(index)")?.pngData() {
-                
                 let filename = texturesDir.appendingPathComponent("texture\(index)")
                 do {
                     try imageFromAssets.write(to: filename)
-                    print("Texture\(index) saved and added to list")
+                    //print("Texture\(index) saved")
                 } catch {
                     print("Could not save texture: \(error)")
                 }
             }
         }
+        print("Default textures saved to documents")
     }
     
     func saveDefaultMap() {
         let map = Map(name: "Skeleton dance")
-//        for texture in textures {
-//            map.texturePalette.append(texture)
-//        }
         let jsonData = try! JSONEncoder().encode(map)
         let filename = map0Dir.appendingPathComponent("map0.json")
         //if !fileManager.fileExists(atPath: mapDir.path){}
@@ -175,36 +151,19 @@ class Resources: ObservableObject {
         } catch {
             print("Could not save default map")
         }
-        
         for index in 0...7 {
             if let imageFromAssets = UIImage(named: "texture\(index)")?.pngData() {
                 let filename = map0Dir.appendingPathComponent("texture\(index)")
                 do {
                     try imageFromAssets.write(to: filename)
-                    print("Default map texture\(index) saved")
+                    //print("Default map texture\(index) saved")
                 } catch {
                     print("Could not save map texture: \(error)")
                 }
             }
         }
+        print("Default map textures saved to documents")
     }
     
-//    func saveDefaultsToDocs() {
-//        saveDefaultMap()
-//        saveDefaultTextures()
-//        let str = ""
-//        let url = docsDir.appendingPathComponent("firstRun")
-//
-//        do {
-//            try str.write(to: url, atomically: true, encoding: .utf8)
-//            print("First run file created")
-//            saveDefaultTextures()
-//            print("Default textures created")
-//            saveDefaultMap()
-//            print("Default map created")
-//        } catch {
-//            print("error saving first run stuff")
-//        }
-//    }
     
 }

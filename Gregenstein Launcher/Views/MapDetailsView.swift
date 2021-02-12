@@ -46,6 +46,8 @@ struct MapDetailsView: View {
                 }
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationBarTitle(map.name)
         .navigationBarItems(trailing: Button("Save") {saveMap()} )
         .onAppear() {setupVars()}
         
@@ -105,16 +107,9 @@ struct MapDetailsView: View {
                         .border(Color.blue, width: borders[index])
                         Text("Change...").font(.system(size: 11)).padding(-8).foregroundColor(.blue)
                     }.padding(5)
-
-                    
                 }
             }
         }
-       
-
-
-
-        
     }
     
     
@@ -146,22 +141,14 @@ struct MapDetailsView: View {
             resources.saveNewMap(map: map)
         } else {
             resources.saveExistingMap(map: map, originalMap: originalMap)
-            
         }
-        
-        
-        
     }
     
     func getDocsDir() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let dataPath = paths[0].appendingPathComponent("maps")
-        
         return dataPath
     }
-    
-    
-    
 }
 
 
