@@ -54,7 +54,6 @@ class Map: Identifiable, ObservableObject, Codable{
             array.append(getUiImage(data: texturePalette[nr]))
             
         }
-        print("\(array.count) uiimages in returned array")
         return array
     }
     
@@ -95,7 +94,7 @@ class Map: Identifiable, ObservableObject, Codable{
             } else {
                 print("Could not get image asset")
             }
-            print("Image data added to palette")
+            print("One image data added to map palette")
 
         }
     }

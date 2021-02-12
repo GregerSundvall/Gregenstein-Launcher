@@ -22,7 +22,7 @@ struct MapListView: View {
                     
                 }
             }
-        }
+        }.onAppear() {resources.loadMaps(); resources.loadTextures()}
     }
 }
 
@@ -44,7 +44,8 @@ struct MapListItem: View {
                     
                 }
             }
-        }.navigationBarItems(trailing:
+        }
+        .navigationBarItems(trailing:
                                 NavigationLink(destination: MapDetailsView(map: newMap, originalMap: newMap)) {
                                     Image(systemName: "plus")
                                 }
