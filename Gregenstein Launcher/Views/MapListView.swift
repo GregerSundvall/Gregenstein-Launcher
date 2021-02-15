@@ -37,10 +37,7 @@ struct MapListItem: View {
 //                Text("Map size: \(map.mapArray.count)")
 //                Text("Map images count: \(map.getImageArray().count)")
 //                Text("\(map.texturePalette.count) images in palette")
-                HStack {
-                    
-                    
-                }
+               
             }
         }
         .navigationBarTitleDisplayMode(.inline)

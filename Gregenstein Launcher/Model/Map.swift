@@ -92,7 +92,7 @@ class Map: Identifiable, ObservableObject, Codable{
             }
             //print("One image data added to map palette")
         }
-        print("Map created with default data. Why is this run a number of times?")
+        print("Map init run. Why is this run a number of times?")
     }
 }
 

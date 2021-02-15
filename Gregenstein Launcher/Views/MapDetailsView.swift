@@ -77,12 +77,16 @@ struct MapDetailsView: View {
                         }
                         .padding(5)
                         .border(Color.blue, width: borders[index])
-                        Text("Change...").font(.system(size: 11)).padding(-8).foregroundColor(.blue)
-                        //                                    NavigationLink(destination: TextureListView(paletteSlot: 7)) {
-                        //                                        Text("Change...")
-                        //                                            .font(.system(size: 12))
-                        //                                    }
+                        
+                        
+                        
+                        NavigationLink(destination: TextureListView(map: map, paletteSlot: index)) {
+                            Text("Change...").font(.system(size: 11))
+                        }
+                        
+
                     }.padding(3)
+                    
                 }
             }
         }
@@ -148,6 +152,15 @@ struct MapDetailsView: View {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let dataPath = paths[0].appendingPathComponent("maps")
         return dataPath
+    }
+}
+
+struct changeTextButton: View {
+    var body: some View {
+        Text("Change...")
+            .font(.system(size: 11))
+            .padding(-8)
+            .foregroundColor(.blue)
     }
 }
 

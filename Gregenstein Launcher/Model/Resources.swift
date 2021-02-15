@@ -25,6 +25,27 @@ class Resources: ObservableObject {
         loadMaps()
     }
     
+    func saveNewTexture(image: UIImage) {
+        let index = textures.endIndex
+        let filename = texturesDir.appendingPathComponent("texture\(index)")
+        do {
+            try image.pngData()?.write(to: filename)
+            print("Texture\(index) saved")
+        } catch {
+            print("Could not save texture: \(error)")
+        }
+        loadTextures()
+        
+//        if let imageData = image.pngData() {
+//            do {
+//                try imageData.write(to: filename)
+//                print("Texture\(index) saved")
+//            } catch {
+//                print("Could not save texture: \(error)")
+//            }
+//            loadTextures()
+//        }
+    }
     
     func saveNewMap(map: Map) {
         let mapIndex = maps.endIndex
