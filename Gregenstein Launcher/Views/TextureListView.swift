@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct TextureListView: View {
+    @Environment(\.presentationMode) var presentationMode
     let map: Map
     let paletteSlot: Int
     @EnvironmentObject var resources: Resources
-    //@State var textures = Textures()
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-    @State var textureImages = [UIImage]()
+    //@State var textureImages = [UIImage]()
     
 
     var body: some View {
         
-        
 
         List() {
-            ForEach(textureImages) { texture in
+            ForEach(resources.textures) { texture in
                 HStack {
-                    Image(uiImage: texture).interpolation(.none).resizable().frame(width: 60, height: 60).aspectRatio(contentMode: .fill)
+                    textureListItem(texture: texture)
                 }.onTapGesture {
-                    saveTextureToPalette(map: map, slot: paletteSlot, image: texture)
+                    saveTextureToPalette(map: map, slot: paletteSlot, texture: texture)
+                    presentationMode.wrappedValue.dismiss()
                 }
                 
             }
@@ -44,33 +44,45 @@ struct TextureListView: View {
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: self.$inputImage)
         })
-        .onAppear() {populateListOfImages()}
     }
 
-    func populateListOfImages() {
-        for imageData in resources.textures {
-            if let uiImage = UIImage(data: imageData) {
-                textureImages.append(uiImage)
-            }
-        }
-    }
     
-    func saveTextureToPalette(map: Map, slot: Int, image: UIImage) {
-        if let imageData = image.pngData() {
-            map.texturePalette[slot] = imageData
-        }
-        
+    func saveTextureToPalette(map: Map, slot: Int, texture: Texture) {
+        map.texturePalette[slot] = texture
     }
-
-//    func loadImage() {
-//        guard let inputImage = inputImage else { return }
-//        textures.list.append(inputImage)
-//        //image = inputImage
-//        //image = Image(uiImage: inputImage)
-//    }
 }
 
 extension UIImage: Identifiable {}
+
+struct textureListItem: View {
+    let texture: Texture
+    
+    
+    var body: some View {
+        HStack {
+            Image(uiImage: getUIImage(imageData: texture.imageData))
+                .interpolation(.none)
+                .resizable()
+                .frame(width: 60, height: 60)
+                .aspectRatio(contentMode: .fill)
+            
+            Image(uiImage: getUIImage(imageData: texture.imageData2))
+                .interpolation(.none)
+                .resizable()
+                .frame(width: 60, height: 60)
+                .aspectRatio(contentMode: .fill)
+        }
+        
+    }
+    func getUIImage (imageData: Data) -> UIImage{
+        if let image = UIImage(data: imageData) {
+            return image
+        }
+        
+        return UIImage()
+    }
+    
+}
 
 //struct TextureListItem: View {
 //    let texture: Texture

@@ -14,6 +14,7 @@ struct MenuStart: View {
         NavigationView {
             VStack {
                 Image("logo").resizable().scaledToFit().frame(width: 300)
+                
                 Spacer()
                 NavigationLink(
                     destination: MapListView(),

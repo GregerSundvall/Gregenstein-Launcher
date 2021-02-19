@@ -9,11 +9,15 @@ import Foundation
 import SwiftUI
 
 class Texture: Identifiable, Codable {
+    var id = UUID()
     var imageData: Data
+    var imageData2 = Data()
     
     init(imageData: Data) {
         self.imageData = imageData
     }
+    
+    
     
     
 }

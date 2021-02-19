@@ -25,7 +25,6 @@ struct MapDetailsView: View {
   
     
     var body: some View {
-        
         HStack(alignment: .center, spacing: 0) {
             let gridItemLayout = Array(repeating: GridItem(.fixed(27)), count: 10)
             
@@ -40,7 +39,7 @@ struct MapDetailsView: View {
                         Image(uiImage: mapImgsArray[index])
                             .resizable()
                             .interpolation(.none)
-                            .frame(minWidth: 35, maxWidth: .infinity, minHeight: 35, maxHeight: .infinity)
+                            .frame(minWidth: 35, maxWidth: 35, minHeight: 35, maxHeight: 35)
                             .padding(0)
                     }
                 }
@@ -51,7 +50,7 @@ struct MapDetailsView: View {
         .navigationBarItems(trailing: Button("Save") {saveMap()} )
         .onAppear() {setupVars()}
         
-        Text("Pick a texture below then tap desired area in map to draw. Tap and hold a texture to replace it.")
+        Text("Pick a texture below then tap desired area in map to draw.")
             .padding(.top)
             .padding(.bottom, 5)
             .font(.system(size: 12))
@@ -133,9 +132,10 @@ struct MapDetailsView: View {
     
     func populatePaletteImgs() {
         uiImagePalette.removeAll()
-        for imagedata in map.texturePalette {
-            uiImagePalette.append(map.getUiImage(data: imagedata))
-        }
+        uiImagePalette = map.getUiImageTexturePalette()
+//        for texture in map.texturePalette {
+//            uiImagePalette.append(map.getUiImage(data: texture.imageData))
+//        }
     }
     
 
@@ -154,6 +154,33 @@ struct MapDetailsView: View {
         return dataPath
     }
 }
+
+//struct mapArea: View {
+//    var map: Map
+//    var index: Int
+//    
+//    var body: some View {
+//    
+//        Button(action: {
+//            drawOneArea(areaNr: index)
+//            
+//        })    {
+//            Image(uiImage: map.getUiImage(data: map.texturePalette[map.mapArray[index]].imageData))
+//                .resizable()
+//                .interpolation(.none)
+//                .frame(minWidth: 35, maxWidth: 35, minHeight: 35, maxHeight: 35)
+//                .padding(0)
+//        }
+//    }
+//    
+//    func drawOneArea(areaNr: Int) {
+//        if selectedTextureNr != 99 {
+//            map.mapArray[areaNr] = selectedTextureNr
+//            mapImgsArray[areaNr] = selectedTextureImg
+//        }
+//    }
+//}
+
 
 struct changeTextButton: View {
     var body: some View {

@@ -10,7 +10,7 @@ import SwiftUI
 
 class Resources: ObservableObject {
     @Published var maps = [Map]()
-    @Published var textures = [Data]()
+    @Published var textures = [Texture]()
     @Published var docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let fileManager = FileManager()
     var mapsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
@@ -25,26 +25,74 @@ class Resources: ObservableObject {
         loadMaps()
     }
     
-    func saveNewTexture(image: UIImage) {
-        let index = textures.endIndex
-        let filename = texturesDir.appendingPathComponent("texture\(index)")
-        do {
-            try image.pngData()?.write(to: filename)
-            print("Texture\(index) saved")
-        } catch {
-            print("Could not save texture: \(error)")
-        }
-        loadTextures()
+    func cropImage(uiImage: UIImage) -> UIImage {
+        var image = uiImage
+        let width = uiImage.size.width
+        let height = uiImage.size.height
+        let size = CGSize(width: 512, height: 512)
         
-//        if let imageData = image.pngData() {
-//            do {
-//                try imageData.write(to: filename)
-//                print("Texture\(index) saved")
-//            } catch {
-//                print("Could not save texture: \(error)")
-//            }
-//            loadTextures()
-//        }
+        if uiImage.size.height > uiImage.size.width {
+            image = image.cropped(to: CGSize(width: width, height: width))!
+            print("image squared")
+        } else if uiImage.size.width > uiImage.size.height {
+            image = uiImage.cropped(to: CGSize(width: height, height: height))!
+            print("image squared")
+        }
+        
+        if image.size.width > 512 {
+            let renderer = UIGraphicsImageRenderer(size: size)
+            let downSampled = renderer.image { (context) in
+                image.draw(in: CGRect(origin: .zero, size: size))
+            }
+            image = downSampled
+            print("image downsampled to 512")
+        }
+        print(image.size)
+        return image
+    }
+    
+    
+    func saveNewTexture(uiImage: UIImage) {
+        let image = cropImage(uiImage: uiImage)
+        
+        if let imageData = image.pngData() {
+            let index = textures.endIndex
+            let texture = Texture(imageData: imageData)
+            texture.imageData2 = getDarkVersion(uiImage: image)
+            let filename = texturesDir.appendingPathComponent("texture\(index).json")
+            let jsonData = try! JSONEncoder().encode(texture)
+            do {
+                try jsonData.write(to: filename)
+                print("Texture\(index) saved to docs")
+            } catch {
+                print("Could not save texture: \(error)")
+            }
+            textures.append(texture)
+            print("Texture added to list")
+            print(image.size)
+        }
+    }
+        
+    func getDarkVersion(uiImage: UIImage) -> Data {
+        var imageData = Data()
+        if let currentFilter = CIFilter(name: "CIColorControls") {
+            let beginImage = CIImage(image: uiImage)
+            currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+            currentFilter.setValue(-0.1, forKey: kCIInputBrightnessKey)
+            
+            let context = CIContext(options: nil)
+            
+            if let output = currentFilter.outputImage {
+                if let cgimg = context.createCGImage(output, from: output.extent) {
+                    let processedImage = UIImage(cgImage: cgimg)
+                    
+                    if let data = processedImage.pngData() {
+                        imageData = data
+                    }
+                }
+            }
+        }
+        return imageData
     }
     
     func saveNewMap(map: Map) {
@@ -55,10 +103,10 @@ class Resources: ObservableObject {
         let filename = mapDir.appendingPathComponent("map\(mapIndex).json")
         try? jsonData.write(to: filename)
         for index in map.texturePalette.indices {
+            let jsonData = try! JSONEncoder().encode(map.texturePalette[index])
             let textureFilename = mapDir.appendingPathComponent("texture\(index)")
-            try? map.texturePalette[index].write(to: textureFilename)
+            try? jsonData.write(to: textureFilename)
         }
-        maps.removeAll()
         loadMaps()
         print("new map saved and list is reloaded")
     }
@@ -74,7 +122,6 @@ class Resources: ObservableObject {
             let filename = mapDir.appendingPathComponent("map\(index).json")
             try? jsonData.write(to: filename)
             print("map changes saved")
-            maps.removeAll()
             loadMaps()
         } else {
             saveNewMap(map: map)
@@ -94,6 +141,15 @@ class Resources: ObservableObject {
             do {
                 let mapData = try Data(contentsOf: mapFile)
                 let map = try! decoder.decode(Map.self, from: mapData)
+                
+                for index in 0...7 {
+                    let textureFile = mapDir.appendingPathComponent("texture\(index).json")
+                    do {
+                        let textureData = try Data(contentsOf: textureFile)
+                        let texture = try decoder.decode(Texture.self, from: textureData)
+                        map.texturePalette.append(texture)
+                    }
+                }
                 maps.append(map)
                 counter += 1
                 print("One map loaded and added to list")
@@ -109,10 +165,11 @@ class Resources: ObservableObject {
         var keepGoin = true
         textures.removeAll()
         while keepGoin {
-            let textureFile = texturesDir.appendingPathComponent("texture\(counter)")
+            let textureFile = texturesDir.appendingPathComponent("texture\(counter).json")
             do {
                 let textureData = try Data(contentsOf: textureFile)
-                textures.append(textureData)
+                let texture = try! decoder.decode(Texture.self, from: textureData)
+                textures.append(texture)
                 //print("One texture loaded and added to list")
                 counter += 1
             } catch {
@@ -148,13 +205,18 @@ class Resources: ObservableObject {
 
     func saveDefaultTextures() {
         for index in 0...7 {
-            if let imageFromAssets = UIImage(named: "texture\(index)")?.pngData() {
-                let filename = texturesDir.appendingPathComponent("texture\(index)")
-                do {
-                    try imageFromAssets.write(to: filename)
-                    //print("Texture\(index) saved")
-                } catch {
-                    print("Could not save texture: \(error)")
+            if let imageFromAssets = UIImage(named: "texture\(index)") {
+                if let imageData = imageFromAssets.pngData() {
+                    let texture = Texture(imageData: imageData)
+                    texture.imageData2 = getDarkVersion(uiImage: imageFromAssets)
+                    let jsonData = try! JSONEncoder().encode(texture)
+                    let filename = texturesDir.appendingPathComponent("texture\(index).json")
+                    do {
+                        try jsonData.write(to: filename)
+                        //print("Texture\(index) saved")
+                    } catch {
+                        print("Could not save texture: \(error)")
+                    }
                 }
             }
         }
@@ -173,17 +235,22 @@ class Resources: ObservableObject {
             print("Could not save default map")
         }
         for index in 0...7 {
-            if let imageFromAssets = UIImage(named: "texture\(index)")?.pngData() {
-                let filename = map0Dir.appendingPathComponent("texture\(index)")
-                do {
-                    try imageFromAssets.write(to: filename)
-                    //print("Default map texture\(index) saved")
-                } catch {
-                    print("Could not save map texture: \(error)")
+            if let imageFromAssets = UIImage(named: "texture\(index)") {
+                if let imageData = imageFromAssets.pngData() {
+                    let texture = Texture(imageData: imageData)
+                    texture.imageData2 = getDarkVersion(uiImage: imageFromAssets)
+                    let jsonData = try! JSONEncoder().encode(texture)
+                    let filename = map0Dir.appendingPathComponent("texture\(index).json")
+                    do {
+                        try jsonData.write(to: filename)
+                        //print("Default map texture\(index) saved")
+                    } catch {
+                        print("Could not save map texture: \(error)")
+                    }
                 }
             }
         }
-        print("Default map textures saved to documents")
+        print("Default map with textures saved to documents")
     }
     
     

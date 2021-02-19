@@ -41,7 +41,8 @@ struct ImagePicker: UIViewControllerRepresentable {
             
             if let uiImage = info[.originalImage] as? UIImage {
                 parent.image = uiImage
-                parent.resources.saveNewTexture(image: uiImage)
+                parent.resources.saveNewTexture(uiImage: uiImage)
+                
             }
             
             parent.presentationMode.wrappedValue.dismiss()
