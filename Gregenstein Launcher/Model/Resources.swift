@@ -135,7 +135,7 @@ class Resources: ObservableObject {
         var counter = 0
         var keepGoin = true
         maps.removeAll()
-        while keepGoin {
+        while keepGoin == true {
             let mapDir = mapsDir.appendingPathComponent("map\(counter)")
             let mapFile = mapDir.appendingPathComponent("map\(counter).json")
             do {

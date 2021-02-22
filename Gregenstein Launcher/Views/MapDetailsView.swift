@@ -98,6 +98,7 @@ struct MapDetailsView: View {
             ForEach(uiImagePalette.indices, id: \.self) { index in
                 
                 if index >= 5 {
+                    
                     VStack {
                         Button(action: {
                                 selectedTextureNr = index
