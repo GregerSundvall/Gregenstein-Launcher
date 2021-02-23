@@ -22,6 +22,27 @@
 		5594528825BB0B41001C044C /* TextureListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5594528725BB0B41001C044C /* TextureListView.swift */; };
 		55D2EA6225DBF55A008A44B7 /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D2EA6125DBF55A008A44B7 /* UIImageExtension.swift */; };
 		55F4CD9725D2B48E00B87C3B /* Resources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F4CD9625D2B48E00B87C3B /* Resources.swift */; };
+		55F8B77525E4F7820065B972 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76225E4F7810065B972 /* Player.swift */; };
+		55F8B77625E4F7820065B972 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 55F8B76325E4F7810065B972 /* Info.plist */; };
+		55F8B77725E4F7820065B972 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76425E4F7810065B972 /* Renderer.swift */; };
+		55F8B77825E4F7820065B972 /* Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76525E4F7810065B972 /* Bitmap.swift */; };
+		55F8B77925E4F7820065B972 /* Monster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76625E4F7810065B972 /* Monster.swift */; };
+		55F8B77A25E4F7820065B972 /* Vector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76725E4F7810065B972 /* Vector.swift */; };
+		55F8B77B25E4F7820065B972 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76825E4F7810065B972 /* Rect.swift */; };
+		55F8B77C25E4F7820065B972 /* Rotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76925E4F7810065B972 /* Rotation.swift */; };
+		55F8B77D25E4F7820065B972 /* Textures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76A25E4F7810065B972 /* Textures.swift */; };
+		55F8B77E25E4F7820065B972 /* Thing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76B25E4F7810065B972 /* Thing.swift */; };
+		55F8B77F25E4F7820065B972 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76C25E4F7810065B972 /* Actor.swift */; };
+		55F8B78025E4F7820065B972 /* World.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76D25E4F7820065B972 /* World.swift */; };
+		55F8B78125E4F7820065B972 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76E25E4F7820065B972 /* Animation.swift */; };
+		55F8B78225E4F7820065B972 /* Ray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B76F25E4F7820065B972 /* Ray.swift */; };
+		55F8B78325E4F7820065B972 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B77025E4F7820065B972 /* Tile.swift */; };
+		55F8B78425E4F7820065B972 /* Tilemap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B77125E4F7820065B972 /* Tilemap.swift */; };
+		55F8B78525E4F7820065B972 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B77225E4F7820065B972 /* Color.swift */; };
+		55F8B78625E4F7820065B972 /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B77325E4F7820065B972 /* Input.swift */; };
+		55F8B78725E4F7820065B972 /* Billboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B77425E4F7820065B972 /* Billboard.swift */; };
+		55F8B79125E4F7B80065B972 /* UIImage+Bitmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B79025E4F7B70065B972 /* UIImage+Bitmap.swift */; };
+		55F8B79625E4F7C80065B972 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F8B79525E4F7C80065B972 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +84,27 @@
 		5594528725BB0B41001C044C /* TextureListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextureListView.swift; sourceTree = "<group>"; };
 		55D2EA6125DBF55A008A44B7 /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		55F4CD9625D2B48E00B87C3B /* Resources.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resources.swift; sourceTree = "<group>"; };
+		55F8B76225E4F7810065B972 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		55F8B76325E4F7810065B972 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../../Gregenstein/Engine/Info.plist; sourceTree = "<group>"; };
+		55F8B76425E4F7810065B972 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		55F8B76525E4F7810065B972 /* Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bitmap.swift; sourceTree = "<group>"; };
+		55F8B76625E4F7810065B972 /* Monster.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Monster.swift; sourceTree = "<group>"; };
+		55F8B76725E4F7810065B972 /* Vector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vector.swift; sourceTree = "<group>"; };
+		55F8B76825E4F7810065B972 /* Rect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
+		55F8B76925E4F7810065B972 /* Rotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rotation.swift; sourceTree = "<group>"; };
+		55F8B76A25E4F7810065B972 /* Textures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Textures.swift; sourceTree = "<group>"; };
+		55F8B76B25E4F7810065B972 /* Thing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Thing.swift; sourceTree = "<group>"; };
+		55F8B76C25E4F7810065B972 /* Actor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actor.swift; sourceTree = "<group>"; };
+		55F8B76D25E4F7820065B972 /* World.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = World.swift; sourceTree = "<group>"; };
+		55F8B76E25E4F7820065B972 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		55F8B76F25E4F7820065B972 /* Ray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ray.swift; sourceTree = "<group>"; };
+		55F8B77025E4F7820065B972 /* Tile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		55F8B77125E4F7820065B972 /* Tilemap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tilemap.swift; sourceTree = "<group>"; };
+		55F8B77225E4F7820065B972 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		55F8B77325E4F7820065B972 /* Input.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		55F8B77425E4F7820065B972 /* Billboard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Billboard.swift; sourceTree = "<group>"; };
+		55F8B79025E4F7B70065B972 /* UIImage+Bitmap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Bitmap.swift"; sourceTree = "<group>"; };
+		55F8B79525E4F7C80065B972 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +155,8 @@
 		5594524E25BB08D3001C044C /* Gregenstein Launcher */ = {
 			isa = PBXGroup;
 			children = (
+				55F8B78B25E4F7980065B972 /* Engine */,
+				55F8B76325E4F7810065B972 /* Info.plist */,
 				559452AF25BB16C6001C044C /* Model */,
 				5594524F25BB08D3001C044C /* Gregenstein_LauncherApp.swift */,
 				5594527E25BB0AFE001C044C /* Views */,
@@ -153,6 +197,7 @@
 		5594527E25BB0AFE001C044C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				55F8B79525E4F7C80065B972 /* ViewController.swift */,
 				5594525125BB08D3001C044C /* MenuStart.swift */,
 				5594528725BB0B41001C044C /* TextureListView.swift */,
 				5524C61425BED32B00825F8F /* MapDetailsView.swift */,
@@ -171,6 +216,32 @@
 				55D2EA6125DBF55A008A44B7 /* UIImageExtension.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		55F8B78B25E4F7980065B972 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
+				55F8B76C25E4F7810065B972 /* Actor.swift */,
+				55F8B76E25E4F7820065B972 /* Animation.swift */,
+				55F8B77425E4F7820065B972 /* Billboard.swift */,
+				55F8B76525E4F7810065B972 /* Bitmap.swift */,
+				55F8B77225E4F7820065B972 /* Color.swift */,
+				55F8B77325E4F7820065B972 /* Input.swift */,
+				55F8B76625E4F7810065B972 /* Monster.swift */,
+				55F8B76225E4F7810065B972 /* Player.swift */,
+				55F8B76F25E4F7820065B972 /* Ray.swift */,
+				55F8B76825E4F7810065B972 /* Rect.swift */,
+				55F8B76425E4F7810065B972 /* Renderer.swift */,
+				55F8B76925E4F7810065B972 /* Rotation.swift */,
+				55F8B76A25E4F7810065B972 /* Textures.swift */,
+				55F8B76B25E4F7810065B972 /* Thing.swift */,
+				55F8B77025E4F7820065B972 /* Tile.swift */,
+				55F8B77125E4F7820065B972 /* Tilemap.swift */,
+				55F8B79025E4F7B70065B972 /* UIImage+Bitmap.swift */,
+				55F8B76725E4F7810065B972 /* Vector.swift */,
+				55F8B76D25E4F7820065B972 /* World.swift */,
+			);
+			path = Engine;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F8B77625E4F7820065B972 /* Info.plist in Resources */,
 				5594525725BB08D6001C044C /* Preview Assets.xcassets in Resources */,
 				5524C62225BEF42600825F8F /* Map1.json in Resources */,
 				5594525425BB08D6001C044C /* Assets.xcassets in Resources */,
@@ -303,16 +375,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55F8B79625E4F7C80065B972 /* ViewController.swift in Sources */,
+				55F8B78125E4F7820065B972 /* Animation.swift in Sources */,
+				55F8B77E25E4F7820065B972 /* Thing.swift in Sources */,
+				55F8B77C25E4F7820065B972 /* Rotation.swift in Sources */,
+				55F8B78325E4F7820065B972 /* Tile.swift in Sources */,
+				55F8B77525E4F7820065B972 /* Player.swift in Sources */,
 				5524C61525BED32B00825F8F /* MapDetailsView.swift in Sources */,
 				5524C60B25BED27600825F8F /* Map.swift in Sources */,
+				55F8B77B25E4F7820065B972 /* Rect.swift in Sources */,
+				55F8B77D25E4F7820065B972 /* Textures.swift in Sources */,
+				55F8B77825E4F7820065B972 /* Bitmap.swift in Sources */,
+				55F8B78425E4F7820065B972 /* Tilemap.swift in Sources */,
 				5594525225BB08D3001C044C /* MenuStart.swift in Sources */,
+				55F8B77725E4F7820065B972 /* Renderer.swift in Sources */,
+				55F8B77925E4F7820065B972 /* Monster.swift in Sources */,
+				55F8B77A25E4F7820065B972 /* Vector.swift in Sources */,
+				55F8B78625E4F7820065B972 /* Input.swift in Sources */,
+				55F8B78025E4F7820065B972 /* World.swift in Sources */,
+				55F8B78225E4F7820065B972 /* Ray.swift in Sources */,
+				55F8B78525E4F7820065B972 /* Color.swift in Sources */,
 				55D2EA6225DBF55A008A44B7 /* UIImageExtension.swift in Sources */,
 				55211EE025C84AC0009BF7A9 /* Texture.swift in Sources */,
 				5524C61D25BED56800825F8F /* MapListView.swift in Sources */,
 				555C5D3025CC23420072B3D5 /* ImagePicker.swift in Sources */,
 				5594528825BB0B41001C044C /* TextureListView.swift in Sources */,
+				55F8B79125E4F7B80065B972 /* UIImage+Bitmap.swift in Sources */,
 				55F4CD9725D2B48E00B87C3B /* Resources.swift in Sources */,
+				55F8B78725E4F7820065B972 /* Billboard.swift in Sources */,
 				5594525025BB08D3001C044C /* Gregenstein_LauncherApp.swift in Sources */,
+				55F8B77F25E4F7820065B972 /* Actor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

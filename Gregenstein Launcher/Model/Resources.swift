@@ -18,12 +18,16 @@ class Resources: ObservableObject {
     var map0Url = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     var texturesDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let decoder = JSONDecoder()
+    //@Published var texturesForGame = [String:UIImage]()
+    @Published var mapToPlay = Map(name: "asdf")
     
     init() {
         checkIfFirstRun()
         loadTextures()
         loadMaps()
     }
+    
+    
     
     func cropImage(uiImage: UIImage) -> UIImage {
         var image = uiImage

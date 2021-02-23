@@ -11,6 +11,7 @@ import SwiftUI
 class Map: Identifiable, ObservableObject, Codable{
     var id = UUID()
     var name: String
+    var width = 10
     var mapArray = [Int]()
     var actorsArray = [Int]()
     var texturePalette = [Texture]()
@@ -21,13 +22,45 @@ class Map: Identifiable, ObservableObject, Codable{
         addDefaultData()
     }
     
-//    func getUiImgFromPalette(nr: Int) -> UIImage {
-//        var uiImage = UIImage()
-//        if let image = UIImage(data: texturePalette[nr]) {
-//            uiImage = image
+    func getSessionBitmapTextures() -> [TextureEnum:Bitmap]{
+        var sessionTextureBitmaps = [TextureEnum:Bitmap]()
+        //let caseStrings = ["wall", "wall2", "wallGreenish", "wallGreenish2", "wallArt", "wallArt2", "floor", "floorLava", "ceiling"]
+        sessionTextureBitmaps[TextureEnum.wall] = getBitmap(fromData: texturePalette[0].imageData)
+        sessionTextureBitmaps[TextureEnum.wall2] = getBitmap(fromData: texturePalette[0].imageData2)
+        sessionTextureBitmaps[TextureEnum.wallGreenish] = getBitmap(fromData: texturePalette[1].imageData)
+        sessionTextureBitmaps[TextureEnum.wallGreenish2] = getBitmap(fromData: texturePalette[1].imageData2)
+        sessionTextureBitmaps[TextureEnum.wallArt] = getBitmap(fromData: texturePalette[2].imageData)
+        sessionTextureBitmaps[TextureEnum.wallArt2] = getBitmap(fromData: texturePalette[2].imageData2)
+        sessionTextureBitmaps[TextureEnum.floor] = getBitmap(fromData: texturePalette[3].imageData)
+        sessionTextureBitmaps[TextureEnum.floorLava] = getBitmap(fromData: texturePalette[4].imageData)
+        sessionTextureBitmaps[TextureEnum.ceiling] = getBitmap(fromData: texturePalette[5].imageData)
+        sessionTextureBitmaps[TextureEnum.monster] = Bitmap(image: UIImage(named: "monster")!)
+        sessionTextureBitmaps[TextureEnum.monsterWalk1] = Bitmap(image: UIImage(named: "monsterWalk1")!)
+        sessionTextureBitmaps[TextureEnum.monsterWalk2] = Bitmap(image: UIImage(named: "monsterWalk2")!)
+        
+//        for index in 0...8 {
+//            sessionTextureBitmaps[caseStrings[index]] = Bitmap(UIImage(data: texturePalette[index].imageData))
 //        }
-//        return uiImage
-//    }
+        
+        return sessionTextureBitmaps
+    }
+    func getBitmap(fromData: Data) -> Bitmap {
+        var bitmap = Bitmap(width: 1, height: 1, color: .red)
+        if let image = UIImage(data: fromData) {
+            if let bitmapTemp = Bitmap(image: image) {
+                bitmap = bitmapTemp
+            }
+        }
+        return bitmap
+    }
+    
+    func dataToUIImage(data: Data) -> UIImage {
+        var uiimage = UIImage()
+        if let image = UIImage(data: data) {
+            uiimage = image
+        }
+        return uiimage
+    }
     
     func getUiImage(data: Data) -> UIImage {
         if let image = UIImage(data: data) {
