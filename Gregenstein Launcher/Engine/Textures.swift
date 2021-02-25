@@ -6,12 +6,15 @@
 //
 
 public enum TextureEnum: String, CaseIterable {
-    case wall, wall2
-    case wallGreenish, wallGreenish2
-    case wallArt, wallArt2
-    case floor
-    case floorLava
-    case ceiling
+    case wall00, wall01
+    case wall10, wall11
+    case wall20, wall21
+    case wall30, wall31
+    case wall40, wall41
+    case floor0
+    case floor1
+    case ceiling0
+    case ceiling1
     case monster
     case monsterWalk1, monsterWalk2
 }
@@ -24,14 +27,4 @@ public struct Textures {
     }
 }
 
-//public extension Textures {
-//    init(loader: (String) -> Bitmap) {
-//        var textures = [TextureEnum: Bitmap]()
-//        for texture in TextureEnum.allCases {
-//            textures[texture] = loader(textureEnum.rawValue)
-//        }
-//        self.init(textures: textures)
-//    }
-//    
-//    
-//}
+

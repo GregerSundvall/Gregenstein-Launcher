@@ -25,25 +25,27 @@ class Map: Identifiable, ObservableObject, Codable{
     func getSessionBitmapTextures() -> [TextureEnum:Bitmap]{
         var sessionTextureBitmaps = [TextureEnum:Bitmap]()
         //let caseStrings = ["wall", "wall2", "wallGreenish", "wallGreenish2", "wallArt", "wallArt2", "floor", "floorLava", "ceiling"]
-        sessionTextureBitmaps[TextureEnum.wall] = getBitmap(fromData: texturePalette[0].imageData)
-        sessionTextureBitmaps[TextureEnum.wall2] = getBitmap(fromData: texturePalette[0].imageData2)
-        sessionTextureBitmaps[TextureEnum.wallGreenish] = getBitmap(fromData: texturePalette[1].imageData)
-        sessionTextureBitmaps[TextureEnum.wallGreenish2] = getBitmap(fromData: texturePalette[1].imageData2)
-        sessionTextureBitmaps[TextureEnum.wallArt] = getBitmap(fromData: texturePalette[2].imageData)
-        sessionTextureBitmaps[TextureEnum.wallArt2] = getBitmap(fromData: texturePalette[2].imageData2)
-        sessionTextureBitmaps[TextureEnum.floor] = getBitmap(fromData: texturePalette[4].imageData)
-        sessionTextureBitmaps[TextureEnum.floorLava] = getBitmap(fromData: texturePalette[4].imageData)
-        sessionTextureBitmaps[TextureEnum.ceiling] = getBitmap(fromData: texturePalette[6].imageData)
+        sessionTextureBitmaps[TextureEnum.wall00] = getBitmap(fromData: texturePalette[0].imageData)
+        sessionTextureBitmaps[TextureEnum.wall01] = getBitmap(fromData: texturePalette[0].imageData2)
+        sessionTextureBitmaps[TextureEnum.wall10] = getBitmap(fromData: texturePalette[1].imageData)
+        sessionTextureBitmaps[TextureEnum.wall11] = getBitmap(fromData: texturePalette[1].imageData2)
+        sessionTextureBitmaps[TextureEnum.wall20] = getBitmap(fromData: texturePalette[2].imageData)
+        sessionTextureBitmaps[TextureEnum.wall21] = getBitmap(fromData: texturePalette[2].imageData2)
+        sessionTextureBitmaps[TextureEnum.wall30] = getBitmap(fromData: texturePalette[3].imageData)
+        sessionTextureBitmaps[TextureEnum.wall31] = getBitmap(fromData: texturePalette[3].imageData2)
+        sessionTextureBitmaps[TextureEnum.wall40] = getBitmap(fromData: texturePalette[4].imageData)
+        sessionTextureBitmaps[TextureEnum.wall41] = getBitmap(fromData: texturePalette[4].imageData2)
+        sessionTextureBitmaps[TextureEnum.floor0] = getBitmap(fromData: texturePalette[5].imageData)
+        sessionTextureBitmaps[TextureEnum.floor1] = getBitmap(fromData: texturePalette[6].imageData)
+        sessionTextureBitmaps[TextureEnum.ceiling0] = getBitmap(fromData: texturePalette[7].imageData)
+        sessionTextureBitmaps[TextureEnum.ceiling1] = getBitmap(fromData: texturePalette[8].imageData)
         sessionTextureBitmaps[TextureEnum.monster] = Bitmap(image: UIImage(named: "monster")!)
         sessionTextureBitmaps[TextureEnum.monsterWalk1] = Bitmap(image: UIImage(named: "monsterWalk1")!)
         sessionTextureBitmaps[TextureEnum.monsterWalk2] = Bitmap(image: UIImage(named: "monsterWalk2")!)
         
-//        for index in 0...8 {
-//            sessionTextureBitmaps[caseStrings[index]] = Bitmap(UIImage(data: texturePalette[index].imageData))
-//        }
-        
         return sessionTextureBitmaps
     }
+    
     func getBitmap(fromData: Data) -> Bitmap {
         var bitmap = Bitmap(width: 1, height: 1, color: .red)
         if let image = UIImage(data: fromData) {
@@ -87,16 +89,16 @@ class Map: Identifiable, ObservableObject, Codable{
     
     func addDefaultData() {
         mapArray = [
-            3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-            2, 0, 0, 3, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 3, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 3, 0, 0, 0, 0, 0, 3,
-            1, 0, 0, 3, 0, 4, 0, 0, 0, 3,
-            1, 0, 0, 0, 0, 0, 0, 0, 0, 3,
-            1, 0, 0, 3, 3, 3, 0, 3, 3, 3,
-            1, 0, 0, 3, 0, 0, 0, 0, 0, 3,
-            2, 0, 0, 3, 0, 0, 0, 0, 0, 3,
-            2, 2, 2, 3, 3, 3, 3, 3, 3, 3,
+            0, 0, 0, 0, 0, 3, 3, 3, 3, 3,
+            0, 5, 5, 5, 5, 5, 5, 7, 7, 3,
+            0, 5, 5, 5, 5, 5, 7, 7, 7, 3,
+            0, 5, 5, 4, 4, 4, 4, 7, 7, 3,
+            0, 5, 5, 4, 7, 7, 4, 7, 7, 3,
+            1, 5, 5, 4, 7, 7, 4, 7, 7, 2,
+            1, 5, 5, 4, 7, 7, 4, 7, 7, 2,
+            1, 5, 6, 6, 6, 6, 6, 6, 7, 2,
+            1, 6, 6, 6, 6, 6, 6, 6, 7, 2,
+            1, 1, 1, 1, 1, 2, 2, 2, 2, 2,
             ]
         
         actorsArray = [
@@ -104,11 +106,11 @@ class Map: Identifiable, ObservableObject, Codable{
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 2, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 2, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 1, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 1, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             ]
         

@@ -12,6 +12,10 @@ struct MapListView: View {
     @EnvironmentObject var resources: Resources
     
     var body: some View {
+    
+        
+        
+        
         
         VStack {
             List() {
@@ -28,20 +32,46 @@ struct MapListView: View {
 struct MapListItem: View {
     let map: Map
     let newMap = Map(name: "New map")
+    @State var selection: String? = nil
     
     var body: some View {
-        //NavigationLink(destination: MapDetailsView(map: getMapCopy(map: map), originalMap: map)
-        NavigationLink(destination: GameWrapper(map: map)
-        ) {
+        
+        HStack {
+            Text(map.name)
+            Spacer()
             
-            HStack {
-                Text("\(map.name)")
-//                Text("Map size: \(map.mapArray.count)")
-//                Text("Map images count: \(map.getImageArray().count)")
-//                Text("\(map.texturePalette.count) images in palette")
-                
-                
-            }
+            Text("Edit")
+                .background(NavigationLink(
+                                "",
+                    destination: MapDetailsView(map: getMapCopy(map: map), originalMap: map)
+                                ))
+//            NavigationLink(
+//                destination: GameWrapper(map: map),
+//                tag: "play",
+//                selection: $selection) { EmptyView()
+//            }
+//            .frame(width: 0, height: 0)
+//            .hidden()
+//            .disabled(true)
+//
+//            NavigationLink(
+//                destination: MapDetailsView(map: getMapCopy(map: map),originalMap: map),
+//                tag: "edit",
+//                selection: $selection) { EmptyView()
+//            }
+//            .frame(width: 0, height: 0)
+//            .hidden()
+//            .disabled(true)
+//
+//            Button("Edit") {
+//                }
+//                self.selection = "edit"
+//            }
+//
+//            Button("Play") {
+//                self.selection = "play"
+//            }
+            
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle("Maps")
@@ -49,6 +79,9 @@ struct MapListItem: View {
             NavigationLink(destination: MapDetailsView(map: newMap, originalMap: newMap)) {
                 Image(systemName: "plus")
             })
+        
+        
+
     }
     
    

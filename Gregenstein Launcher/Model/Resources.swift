@@ -146,7 +146,7 @@ class Resources: ObservableObject {
                 let mapData = try Data(contentsOf: mapFile)
                 let map = try! decoder.decode(Map.self, from: mapData)
                 
-                for index in 0...7 {
+                for index in 0...8 {
                     let textureFile = mapDir.appendingPathComponent("texture\(index).json")
                     do {
                         let textureData = try Data(contentsOf: textureFile)
@@ -208,7 +208,7 @@ class Resources: ObservableObject {
     }
 
     func saveDefaultTextures() {
-        for index in 0...7 {
+        for index in 0...8 {
             if let imageFromAssets = UIImage(named: "texture\(index)") {
                 if let imageData = imageFromAssets.pngData() {
                     let texture = Texture(imageData: imageData)
@@ -238,7 +238,7 @@ class Resources: ObservableObject {
         } catch {
             print("Could not save default map")
         }
-        for index in 0...7 {
+        for index in 0...8 {
             if let imageFromAssets = UIImage(named: "texture\(index)") {
                 if let imageData = imageFromAssets.pngData() {
                     let texture = Texture(imageData: imageData)

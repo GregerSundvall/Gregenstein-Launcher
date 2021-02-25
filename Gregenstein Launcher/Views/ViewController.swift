@@ -106,46 +106,7 @@ class ViewController: UIViewController {
         }
         
         return Tilemap(tiles: tiles, things: things, width: map.width)
-//        let jsonURL = Bundle.main.url(forResource: "Map", withExtension: "json")!
 
-//        let json : JSON = [
-//            "width": map.width,
-//            "tiles": [
-//                map.mapArray,
-//            ],
-//            "things": [
-//                map.actorsArray,
-//            ]
-//        ]
-//        var json = JSON()
-//        json["width"].int = map.width as Int
-//        json["tiles"].arrayObject = map.mapArray
-//        json["things"].arrayObject = map.actorsArray
-//
-//
-//        func getArrayString(array: [Int]) -> String {
-//            var string = String()
-//            for nr in array {
-//                string.append("\(nr), ")
-//            }
-//            return string
-//        }
-//        let string = #"""
-//            {"width": \#(map.width),
-//            "tiles": [
-//            \#(getArrayString(array: map.mapArray))
-//            ],
-//            "things": [
-//            \#(getArrayString(array: map.actorsArray))
-//            ]
-//            }
-//            """#
-//        var json: JSON
-//        if let dataFromString = string.data(using: .utf8, allowLossyConversion: false) {
-//            try! json = JSON(data: dataFromString)
-//        }
-        //let jsonData = try! Data(contentsOf: json)
-//        return try! JSONDecoder().decode(Tilemap.self, from: json(using: .utf8, allowLossyConversion: false)!)
     }
     
     

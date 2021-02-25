@@ -11,10 +11,10 @@ struct MapDetailsView: View {
     @EnvironmentObject var resources: Resources
     var map: Map
     var originalMap: Map
-    @State var selectedTextureNr = 99
+    @State var selectedTextureNr = 999
     @State var selectedTextureImg = UIImage()
     @State var mapImgsArray = [UIImage]()
-    @State var borders = Array(repeating: CGFloat(0), count: 8)
+    @State var borders = Array(repeating: CGFloat(0), count: 9)
     @State var uiImagePalette = [UIImage]()
     
     func setupVars() {
@@ -25,6 +25,8 @@ struct MapDetailsView: View {
   
     
     var body: some View {
+        NavigationLink(destination: GameWrapper(map: map), label: {Text("Play")})
+        
         HStack(alignment: .center, spacing: 0) {
             let gridItemLayout = Array(repeating: GridItem(.fixed(27)), count: 10)
             
@@ -125,7 +127,7 @@ struct MapDetailsView: View {
     }
     
     func drawOneArea(areaNr: Int) {
-        if selectedTextureNr != 99 {
+        if selectedTextureNr != 999 {
             map.mapArray[areaNr] = selectedTextureNr
             mapImgsArray[areaNr] = selectedTextureImg
         }
@@ -134,9 +136,7 @@ struct MapDetailsView: View {
     func populatePaletteImgs() {
         uiImagePalette.removeAll()
         uiImagePalette = map.getUiImageTexturePalette()
-//        for texture in map.texturePalette {
-//            uiImagePalette.append(map.getUiImage(data: texture.imageData))
-//        }
+
     }
     
 
@@ -156,31 +156,7 @@ struct MapDetailsView: View {
     }
 }
 
-//struct mapArea: View {
-//    var map: Map
-//    var index: Int
-//    
-//    var body: some View {
-//    
-//        Button(action: {
-//            drawOneArea(areaNr: index)
-//            
-//        })    {
-//            Image(uiImage: map.getUiImage(data: map.texturePalette[map.mapArray[index]].imageData))
-//                .resizable()
-//                .interpolation(.none)
-//                .frame(minWidth: 35, maxWidth: 35, minHeight: 35, maxHeight: 35)
-//                .padding(0)
-//        }
-//    }
-//    
-//    func drawOneArea(areaNr: Int) {
-//        if selectedTextureNr != 99 {
-//            map.mapArray[areaNr] = selectedTextureNr
-//            mapImgsArray[areaNr] = selectedTextureImg
-//        }
-//    }
-//}
+
 
 
 struct changeTextButton: View {
@@ -193,12 +169,3 @@ struct changeTextButton: View {
 }
 
 
-
-
-
-//struct MapDetails_Previews: PreviewProvider {
-//    static var previews: some View {
-//        
-//        MapDetailsView()
-//    }
-//}
