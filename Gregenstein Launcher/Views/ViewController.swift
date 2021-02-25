@@ -2,17 +2,11 @@
 
 
 import UIKit
-//import SwiftUI
-//import Engine
 
 private let joystickRadius: Double = 40
-private let maximumTimeStep: Double = 1 / 20
+private let maximumTimeStep: Double = 1 / 90
 private let worldTimeStep: Double = 1 / 120
-//private func loadTextures() -> Textures {
-//    return Textures(loader: { name in
-//    Bitmap(image: UIImage(named: name)!)!
-//    })
-//}
+
 
 class ViewController: UIViewController {
     private let imageView = UIImageView()
@@ -21,8 +15,6 @@ class ViewController: UIViewController {
     private var lastFrameTime = CACurrentMediaTime()
     private var textures = Textures()
     private var map : Map
-    //@EnvironmentObject var resources: Resources
-    //@Binding var map : Map
     init(map: Map) {
         self.map = map
         super.init(nibName: nil, bundle: nil)
@@ -77,7 +69,7 @@ class ViewController: UIViewController {
     }
     
     @objc func update(_ displayLink: CADisplayLink) {
-        let timeStep = min(maximumTimeStep, displayLink.timestamp - lastFrameTime)
+        let timeStep = maximumTimeStep//min(maximumTimeStep, displayLink.timestamp - lastFrameTime)
         let inputVector = self.inputVector
         let rotation = inputVector.x * world.player.turningSpeed * worldTimeStep
         let input = Input(speed: -inputVector.y, rotation: Rotation(sine: sin(rotation), cosine: cos(rotation)))
