@@ -6,7 +6,7 @@
 //
 
 
-public enum Tile: Int, Decodable {
+public enum Tile: Int, Decodable, CaseIterable {
     case floor
     case wall
     case wallGreenish
@@ -24,7 +24,7 @@ public extension Tile {
         }
     }
     
-    var textures: [Texture] {
+    var textures: [TextureEnum] {
         switch self {
         case .floor:
             return [.floor, .ceiling]

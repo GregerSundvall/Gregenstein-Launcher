@@ -19,7 +19,7 @@ class Resources: ObservableObject {
     var texturesDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
     let decoder = JSONDecoder()
     //@Published var texturesForGame = [String:UIImage]()
-    @Published var mapToPlay = Map(name: "asdf")
+    @Published var mapToPlay =  Map(name: "asdf")
     
     init() {
         checkIfFirstRun()

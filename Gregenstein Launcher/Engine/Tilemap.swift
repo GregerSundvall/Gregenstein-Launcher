@@ -11,7 +11,7 @@ public struct Tilemap: Decodable {
     public let things: [Thing]
     public let width: Int
     
-    public init(tiles: [Int], things: [Int], width: Int) {
+    public init(tiles: [Tile], things: [Thing], width: Int) {
         self.tiles = tiles
         self.things = things
         self.width = width

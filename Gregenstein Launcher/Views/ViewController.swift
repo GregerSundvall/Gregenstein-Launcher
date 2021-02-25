@@ -2,7 +2,7 @@
 
 
 import UIKit
-import SwiftUI
+//import SwiftUI
 //import Engine
 
 private let joystickRadius: Double = 40
@@ -17,11 +17,21 @@ private let worldTimeStep: Double = 1 / 120
 class ViewController: UIViewController {
     private let imageView = UIImageView()
     private let panGesture = UIPanGestureRecognizer()
-    private var world = World(map: Tilemap(tiles: [1], things: [1], width: 1) )
+    private var world : World!
     private var lastFrameTime = CACurrentMediaTime()
     private var textures = Textures()
-    private var map = Map(name: "asdf")
-    @EnvironmentObject var resources: Resources
+    private var map : Map
+    //@EnvironmentObject var resources: Resources
+    //@Binding var map : Map
+    init(map: Map) {
+        self.map = map
+        super.init(nibName: nil, bundle: nil)
+    }
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("This class does not support NSCoder")
+    }
+    
 
     private var inputVector: Vector {
         switch panGesture.state {
@@ -41,8 +51,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        map = resources.mapToPlay
-        world = World(map: Tilemap(tiles: map.mapArray, things: map.actorsArray, width: map.width) )
+        //map = resources.mapToPlay
+        world = World(map: loadMap())
         textures.textures = map.getSessionBitmapTextures()
         setUpImageView()
         view.addGestureRecognizer(panGesture)
@@ -52,9 +62,7 @@ class ViewController: UIViewController {
         
     }
     
-    func loadMap() -> Tilemap {
-        return Tilemap(tiles: map.mapArray, things: map.actorsArray, width: map.width)
-    }
+  
     
     func setUpImageView() {
         view.addSubview(imageView)
@@ -84,11 +92,71 @@ class ViewController: UIViewController {
         
         imageView.image = UIImage(bitmap: renderer.bitmap)
     }
+    
+    
+    func loadMap() -> Tilemap {
+        var allTiles = [Tile]()
+        for tile in Tile.allCases {
+            allTiles.append(tile)
+        }
+        var tiles = [Tile]()
+        for nr in map.mapArray {
+            tiles.append(allTiles[nr])
+        }
+        
+        var allThings = [Thing]()
+        for thing in Thing.allCases {
+            allThings.append(thing)
+        }
+        var things = [Thing]()
+        for nr in map.actorsArray {
+            things.append(allThings[nr])
+        }
+        
+        return Tilemap(tiles: tiles, things: things, width: map.width)
+//        let jsonURL = Bundle.main.url(forResource: "Map", withExtension: "json")!
+
+//        let json : JSON = [
+//            "width": map.width,
+//            "tiles": [
+//                map.mapArray,
+//            ],
+//            "things": [
+//                map.actorsArray,
+//            ]
+//        ]
+//        var json = JSON()
+//        json["width"].int = map.width as Int
+//        json["tiles"].arrayObject = map.mapArray
+//        json["things"].arrayObject = map.actorsArray
+//
+//
+//        func getArrayString(array: [Int]) -> String {
+//            var string = String()
+//            for nr in array {
+//                string.append("\(nr), ")
+//            }
+//            return string
+//        }
+//        let string = #"""
+//            {"width": \#(map.width),
+//            "tiles": [
+//            \#(getArrayString(array: map.mapArray))
+//            ],
+//            "things": [
+//            \#(getArrayString(array: map.actorsArray))
+//            ]
+//            }
+//            """#
+//        var json: JSON
+//        if let dataFromString = string.data(using: .utf8, allowLossyConversion: false) {
+//            try! json = JSON(data: dataFromString)
+//        }
+        //let jsonData = try! Data(contentsOf: json)
+//        return try! JSONDecoder().decode(Tilemap.self, from: json(using: .utf8, allowLossyConversion: false)!)
+    }
+    
+    
 }
 
-//private func loadMap() -> Tilemap {
-//
-//    let jsonURL = Bundle.main.url(forResource: "Map", withExtension: "json")!
-//    let jsonData = try! Data(contentsOf: jsonURL)
-//    return try! JSONDecoder().decode(Tilemap.self, from: jsonData)
-//}
+

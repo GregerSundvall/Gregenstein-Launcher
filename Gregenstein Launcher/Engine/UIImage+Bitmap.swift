@@ -11,7 +11,7 @@ import UIKit
 extension UIImage {
     convenience init?(bitmap: Bitmap) {
         let alphaInfo = CGImageAlphaInfo.premultipliedLast
-        let bytesPerPixel = MemoryLayout<Color>.size
+        let bytesPerPixel = MemoryLayout<ColorCustomClass>.size
         let bytesPerRow = bitmap.width * bytesPerPixel
         
         guard let providerRef = CGDataProvider(data: Data(
@@ -45,10 +45,10 @@ extension Bitmap {
         }
         
         let alphaInfo = CGImageAlphaInfo.premultipliedLast
-        let bytesPerPixel = MemoryLayout<Color>.size
+        let bytesPerPixel = MemoryLayout<ColorCustomClass>.size
         let bytesPerRow = cgImage.width * bytesPerPixel
         
-        var pixels = [Color](repeating: .clear, count: cgImage.width * cgImage.height)
+        var pixels = [ColorCustomClass](repeating: .clear, count: cgImage.width * cgImage.height)
         guard let context = CGContext(
                 data: &pixels,
             width: cgImage.width,

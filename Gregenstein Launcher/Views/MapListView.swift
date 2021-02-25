@@ -19,6 +19,7 @@ struct MapListView: View {
                     MapListItem(map: map)
                     
                 }
+                
             }
         }.onAppear() {resources.loadMaps(); resources.loadTextures()}
     }
@@ -29,15 +30,17 @@ struct MapListItem: View {
     let newMap = Map(name: "New map")
     
     var body: some View {
-        NavigationLink(destination: MapDetailsView(map: getMapCopy(map: map), originalMap: map)
+        //NavigationLink(destination: MapDetailsView(map: getMapCopy(map: map), originalMap: map)
+        NavigationLink(destination: GameWrapper(map: map)
         ) {
             
-            VStack {
+            HStack {
                 Text("\(map.name)")
 //                Text("Map size: \(map.mapArray.count)")
 //                Text("Map images count: \(map.getImageArray().count)")
 //                Text("\(map.texturePalette.count) images in palette")
-               
+                
+                
             }
         }
         .navigationBarTitleDisplayMode(.inline)

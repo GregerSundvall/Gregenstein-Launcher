@@ -7,10 +7,10 @@
 
 
 public struct Bitmap {
-    public private(set) var pixels: [Color]
+    public private(set) var pixels: [ColorCustomClass]
     public let width: Int
     
-    public init(width: Int, pixels: [Color]) {
+    public init(width: Int, pixels: [ColorCustomClass]) {
         self.width = width
         self.pixels = pixels
     }
@@ -21,23 +21,23 @@ public extension Bitmap {
         return pixels.count / width
     }
     
-    subscript(x: Int, y: Int) -> Color {
+    subscript(x: Int, y: Int) -> ColorCustomClass {
         get { return pixels[y * width + x]}
         set {
             guard x >= 0, y >= 0, x < width, y < height else {return}
             pixels[y * width + x] = newValue }
     }
     
-    subscript(normalized x: Double, y: Double) -> Color {
+    subscript(normalized x: Double, y: Double) -> ColorCustomClass {
         return self[Int(x * Double(width)), Int(y * Double(height))]
     }
     
-    init(width: Int, height: Int, color: Color) {
+    init(width: Int, height: Int, color: ColorCustomClass) {
         self.pixels = Array(repeating: color, count: width * height)
         self.width = width
     }
     
-    mutating func fill(rect: Rect, color: Color) {
+    mutating func fill(rect: Rect, color: ColorCustomClass) {
         for y in Int(rect.min.y) ..< Int(rect.max.y) {
             for x in Int(rect.min.x) ..< Int(rect.max.x) {
                 self[x, y] = color
@@ -45,7 +45,7 @@ public extension Bitmap {
         }
     }
     
-    mutating func drawLine(from: Vector, to: Vector, color: Color) {
+    mutating func drawLine(from: Vector, to: Vector, color: ColorCustomClass) {
         let difference = to - from
         let stepCount: Int
         let step: Vector
@@ -76,10 +76,10 @@ public extension Bitmap {
         }
     }
     
-    mutating func blendPixel(at x: Int, _ y: Int, with newColor: Color) {
+    mutating func blendPixel(at x: Int, _ y: Int, with newColor: ColorCustomClass) {
         let oldColor = self[x, y]
         let inverseAlpha = 1 - Double(newColor.a) / 255
-        self[x, y] = Color(
+        self[x, y] = ColorCustomClass(
             r: UInt8(Double(oldColor.r) * inverseAlpha) + newColor.r,
             g: UInt8(Double(oldColor.g) * inverseAlpha) + newColor.g,
             b: UInt8(Double(oldColor.b) * inverseAlpha) + newColor.b)

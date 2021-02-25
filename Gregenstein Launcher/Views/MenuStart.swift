@@ -9,6 +9,9 @@ import SwiftUI
 
 struct MenuStart: View {
     
+    @EnvironmentObject var resources : Resources
+    @State private var mapToPlay = Map(name: "asdf")
+    
     var body: some View {
         
         NavigationView {
@@ -17,7 +20,7 @@ struct MenuStart: View {
                 
                 Spacer()
                 NavigationLink(
-                    destination: MapListView(),
+                    destination: GameWrapper(map: Map(name: "asdf")),
                     label: {
                         Text("Play game")
                     })
@@ -37,6 +40,11 @@ struct MenuStart: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarTitle("")
+        
+    }
+    
+    func setMapToPlay() {
+        mapToPlay = resources.mapToPlay
     }
 }
 

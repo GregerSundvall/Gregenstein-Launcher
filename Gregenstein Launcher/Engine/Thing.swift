@@ -6,7 +6,7 @@
 //
 
 
-public enum Thing: Int, Decodable {
+public enum Thing: Int, Decodable, CaseIterable {
     case nothing
     case player
     case monster
