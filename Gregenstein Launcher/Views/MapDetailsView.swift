@@ -122,7 +122,7 @@ struct MapDetailsView: View {
     
     
     func setBorders(box: Int) {
-        borders = Array(repeating: CGFloat(0), count: 8)
+        borders = Array(repeating: CGFloat(0), count: 9)
         borders[box] = 2
     }
     

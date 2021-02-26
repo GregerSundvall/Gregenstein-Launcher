@@ -82,7 +82,8 @@ class Resources: ObservableObject {
         if let currentFilter = CIFilter(name: "CIColorControls") {
             let beginImage = CIImage(image: uiImage)
             currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
-            currentFilter.setValue(-0.1, forKey: kCIInputBrightnessKey)
+            currentFilter.setValue(-0.35, forKey: kCIInputBrightnessKey)
+            currentFilter.setValue(0.3, forKey: kCIInputContrastKey)
             
             let context = CIContext(options: nil)
             
