@@ -39,9 +39,9 @@ class Map: Identifiable, ObservableObject, Codable{
         sessionTextureBitmaps[TextureEnum.floor1] = getBitmap(fromData: texturePalette[6].imageData)
         sessionTextureBitmaps[TextureEnum.ceiling0] = getBitmap(fromData: texturePalette[7].imageData)
         sessionTextureBitmaps[TextureEnum.ceiling1] = getBitmap(fromData: texturePalette[8].imageData)
-        sessionTextureBitmaps[TextureEnum.monster] = Bitmap(image: UIImage(named: "monster")!)
-        sessionTextureBitmaps[TextureEnum.monsterWalk1] = Bitmap(image: UIImage(named: "monsterWalk1")!)
-        sessionTextureBitmaps[TextureEnum.monsterWalk2] = Bitmap(image: UIImage(named: "monsterWalk2")!)
+        sessionTextureBitmaps[TextureEnum.monsterSun0] = Bitmap(image: UIImage(named: "monsterSun0")!)
+        sessionTextureBitmaps[TextureEnum.monsterSun1] = Bitmap(image: UIImage(named: "monsterSun1")!)
+        sessionTextureBitmaps[TextureEnum.monsterSun2] = Bitmap(image: UIImage(named: "monsterSun2")!)
         
         return sessionTextureBitmaps
     }

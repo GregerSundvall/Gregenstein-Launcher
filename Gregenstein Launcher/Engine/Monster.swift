@@ -12,7 +12,7 @@ public enum MonsterState {
 
 
 public struct Monster: Actor {
-    public let speed: Double = 0.2
+    public let speed: Double = 0.4
     public let radius: Double = 0.4
     public var position: Vector
     public var velocity: Vector = Vector(x: 0, y: 0)
@@ -55,11 +55,11 @@ public extension Monster {
 }
 
 public extension Animation {
-    static let monsterIdle = Animation(frames: [.monster], duration: 0)
+    static let monsterIdle = Animation(frames: [.monsterSun0], duration: 0)
     static let monsterWalk = Animation(frames: [
-        .monsterWalk1,
-        .monster,
-        .monsterWalk2,
-        .monster
-    ], duration: 1)
+        .monsterSun0,
+        .monsterSun1,
+        .monsterSun2,
+        .monsterSun1
+    ], duration: 0.5)
 }
