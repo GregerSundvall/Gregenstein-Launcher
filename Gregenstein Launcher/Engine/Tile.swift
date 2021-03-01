@@ -16,6 +16,7 @@ public enum Tile: Int, Decodable, CaseIterable {
     case open0
     case open1
     case open2
+    case open3
 }
 
 public extension Tile {
@@ -23,7 +24,7 @@ public extension Tile {
         switch self {
         case .wall0, .wall1, .wall2, .wall3, .wall4:
             return true
-        case .open0, .open1, .open2:
+        case .open0, .open1, .open2, .open3:
             return false
         }
     }
@@ -44,8 +45,10 @@ public extension Tile {
         case .open0:
             return [.floor0, .ceiling0]
         case .open1:
-            return [.floor1, .ceiling0]
+            return [.floor0, .ceiling1]
         case .open2:
+            return [.floor1, .ceiling0]
+        case .open3:
             return [.floor1, .ceiling1]
         }
     }

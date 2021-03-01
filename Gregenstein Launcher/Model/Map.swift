@@ -22,6 +22,28 @@ class Map: Identifiable, ObservableObject, Codable{
         addDefaultData()
     }
     
+    
+    func getFloorCeilingImgs() -> [[UIImage]]{
+        var array = [[UIImage]]()
+        array.append([
+            getUiImage(data: self.texturePalette[5].imageData),
+            getUiImage(data: self.texturePalette[7].imageData)
+        ])
+        array.append([
+            getUiImage(data: self.texturePalette[5].imageData),
+            getUiImage(data: self.texturePalette[8].imageData)
+        ])
+        array.append([
+            getUiImage(data: self.texturePalette[6].imageData),
+            getUiImage(data: self.texturePalette[7].imageData)
+        ])
+        array.append([
+            getUiImage(data: self.texturePalette[6].imageData),
+            getUiImage(data: self.texturePalette[8].imageData)
+        ])
+        return array
+    }
+    
     func getSessionBitmapTextures() -> [TextureEnum:Bitmap]{
         var sessionTextureBitmaps = [TextureEnum:Bitmap]()
         //let caseStrings = ["wall", "wall2", "wallGreenish", "wallGreenish2", "wallArt", "wallArt2", "floor", "floorLava", "ceiling"]
@@ -94,11 +116,11 @@ class Map: Identifiable, ObservableObject, Codable{
             0, 5, 5, 5, 5, 5, 7, 7, 7, 3,
             0, 5, 5, 4, 4, 4, 4, 7, 7, 3,
             0, 5, 5, 4, 7, 7, 4, 7, 7, 3,
-            1, 5, 5, 4, 7, 7, 4, 7, 7, 2,
-            1, 5, 5, 4, 7, 7, 4, 7, 7, 2,
-            1, 5, 6, 6, 6, 6, 6, 6, 7, 2,
+            1, 5, 5, 4, 7, 7, 4, 7, 7, 1,
+            2, 5, 5, 4, 7, 7, 4, 7, 7, 1,
+            1, 5, 6, 6, 6, 6, 6, 6, 7, 1,
             1, 6, 6, 6, 6, 6, 6, 6, 7, 2,
-            1, 1, 1, 1, 1, 2, 2, 2, 2, 2,
+            1, 2, 1, 1, 1, 2, 1, 1, 1, 2,
             ]
         
         actorsArray = [
@@ -114,19 +136,45 @@ class Map: Identifiable, ObservableObject, Codable{
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             ]
         
-//        for index in 0...7 {
-//            if let image = UIImage(named: "texture\(index)") {
-//                if let data = image.pngData() {
-//                    texturePalette.append(Texture(imageData: data))
-//                } else {
-//                    print("could not get image data")
-//                }
-//            } else {
-//                print("Could not get image asset")
-//            }
-//            //print("One image data added to map palette")
-//        }
-        print("Map init run. Why is this run a number of times?")
+        for index in 0...8 {
+            if let image = UIImage(named: "texture\(index)") {
+                if let data = image.pngData() {
+                    let texture = Texture(imageData: data)
+                    texture.imageData2 = getDarkVersion(uiImage: image)
+                    texturePalette.append(texture)
+                } else {
+                    print("could not get image data")
+                }
+            } else {
+                print("Could not get image asset")
+            }
+            
+            //print("One image data added to map palette")
+        }
+        print("Map init run.")
+    }
+    
+    func getDarkVersion(uiImage: UIImage) -> Data {
+        var imageData = Data()
+        if let currentFilter = CIFilter(name: "CIColorControls") {
+            let beginImage = CIImage(image: uiImage)
+            currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
+            currentFilter.setValue(-0.35, forKey: kCIInputBrightnessKey)
+            currentFilter.setValue(0.3, forKey: kCIInputContrastKey)
+            
+            let context = CIContext(options: nil)
+            
+            if let output = currentFilter.outputImage {
+                if let cgimg = context.createCGImage(output, from: output.extent) {
+                    let processedImage = UIImage(cgImage: cgimg)
+                    
+                    if let data = processedImage.pngData() {
+                        imageData = data
+                    }
+                }
+            }
+        }
+        return imageData
     }
 }
 

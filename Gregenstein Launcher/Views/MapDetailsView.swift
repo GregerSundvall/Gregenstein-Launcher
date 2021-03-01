@@ -16,10 +16,12 @@ struct MapDetailsView: View {
     @State var mapImgsArray = [UIImage]()
     @State var borders = Array(repeating: CGFloat(0), count: 9)
     @State var uiImagePalette = [UIImage]()
+    @State var floorCeilingImgs = [[UIImage]]()
     
     func setupVars() {
         mapImgsArray = map.getImageArray()
         uiImagePalette = map.getUiImageTexturePalette()
+        floorCeilingImgs = map.getFloorCeilingImgs()
     }
     
   
@@ -82,40 +84,61 @@ struct MapDetailsView: View {
                         
                         
                         NavigationLink(destination: TextureListView(map: map, paletteSlot: index)) {
-                            Text("Change...").font(.system(size: 11))
+                            Text("Replace").font(.system(size: 11))
                         }
                         
 
                     }.padding(3)
                     
                 }
-            }
+            }.onAppear(perform: {uiImagePalette = map.getUiImageTexturePalette()})
         }
 
         
-        Text("Floors").padding(.top).padding(.bottom, -10)
+        Text("Open areas").padding(.top).padding(.bottom, 5)
         
         
         HStack {
-            ForEach(uiImagePalette.indices, id: \.self) { index in
-                
-                if index >= 5 {
+            ForEach(floorCeilingImgs.indices, id: \.self) { index in
+            
+            
+                VStack {
+                    NavigationLink(destination: TextureListView(map: map, paletteSlot: index + 5)) {
+                        Text("Replace floor").font(.system(size: 11)).padding(.bottom, -5)
+                    }
                     
-                    VStack {
+                    ZStack {
                         Button(action: {
-                                selectedTextureNr = index
-                                selectedTextureImg = uiImagePalette[index]
-                                setBorders(box: index)
+                                selectedTextureNr = index + 5
+                                selectedTextureImg = floorCeilingImgs[index][0]
+                                setBorders(box: index + 5)
                         }) {
-                            Image(uiImage: uiImagePalette[index]) .resizable().interpolation(.none).frame(width: 50, height: 50)
-                        }
-                        .padding(5)
-                        .border(Color.blue, width: borders[index])
-                        Text("Change...").font(.system(size: 11)).padding(-8).foregroundColor(.blue)
-                    }.padding(5)
-                }
+                            Image(uiImage: floorCeilingImgs[index][0]) .resizable().interpolation(.none).frame(width: 50, height: 50)
+                        }.offset(x: -10, y: -10)
+                        
+                        
+                        Button(action: {
+                                selectedTextureNr = index + 5
+                                selectedTextureImg = floorCeilingImgs[index][0]
+                                setBorders(box: index + 5)
+                        }) {
+                            Image(uiImage: floorCeilingImgs[index][1]) .resizable().interpolation(.none).frame(width: 50, height: 50)
+                        }.offset(x: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/, y: /*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    }
+                    .padding(14)
+                    .border(Color.blue, width: borders[index + 5])
+                    
+                    NavigationLink(destination: TextureListView(map: map, paletteSlot: index + 5)) {
+                        Text("Replace ceiling").font(.system(size: 11))
+                    }
+                    
+                }//.padding(5)
+                
             }
-        }
+        }.onAppear(perform: {
+            
+            floorCeilingImgs = map.getFloorCeilingImgs()
+        })
     }
     
     
@@ -161,7 +184,7 @@ struct MapDetailsView: View {
 
 struct changeTextButton: View {
     var body: some View {
-        Text("Change...")
+        Text("Replace")
             .font(.system(size: 11))
             .padding(-8)
             .foregroundColor(.blue)
