@@ -109,7 +109,7 @@ class Resources: ObservableObject {
         try? jsonData.write(to: filename)
         for index in map.texturePalette.indices {
             let jsonData = try! JSONEncoder().encode(map.texturePalette[index])
-            let textureFilename = mapDir.appendingPathComponent("texture\(index)")
+            let textureFilename = mapDir.appendingPathComponent("texture\(index).json")
             try? jsonData.write(to: textureFilename)
         }
         loadMaps()
